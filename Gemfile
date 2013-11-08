@@ -9,6 +9,22 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'mongoid', github: 'mongoid/mongoid'
+gem 'bson_ext'
+
+group :test, :development do
+  gem 'rspec-rails'
+end
+
+group :development do
+  gem 'guard-rspec', require: false
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'mongoid-rspec'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
