@@ -3,6 +3,7 @@ class Post
   include Mongoid::Timestamps
 
   belongs_to :user
+  belongs_to :post
 
   field :description
 end
