@@ -5,6 +5,7 @@ class Post
 
   belongs_to :user
   belongs_to :post
+  has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
 
   field :description
   has_mongoid_attached_file :photo,

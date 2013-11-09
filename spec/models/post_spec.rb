@@ -4,6 +4,7 @@ describe Post do
 
   it { should belong_to :user }
   it { should belong_to :post }
+  it { should have_and_belong_to_many(:helped_users).of_type(User).as_inverse_of(:helpful_posts) }
   it { should have_field :created_at }
   it { should have_field :description }
 
