@@ -9,17 +9,25 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'figaro'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Attachments
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'aws-sdk', '~> 1.3.4'
+
 gem 'zeus-parallel_tests'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
 
 group :development do
+  gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'terminal-notifier-guard' # Mac OS X 10.8 only
 end
 
 group :test do

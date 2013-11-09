@@ -7,4 +7,9 @@ describe Post do
   it { should have_field :created_at }
   it { should have_field :description }
 
+  it "should have an attachment :photo", :slow do
+    post = create(:post_with_photo)
+    post.photo.url.should_not be_nil
+  end
+
 end
