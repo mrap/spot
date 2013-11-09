@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
+gem 'factual-api'
 
 # Attachments
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
