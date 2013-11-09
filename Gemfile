@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+gem 'zeus-parallel_tests'
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'

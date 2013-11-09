@@ -1,8 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] = 'test' # Orig: ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+# require 'rspec/autorun' # disabled for Zeus
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -32,7 +32,7 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     # removes /public/test/
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/test"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/system/test"])
   end
 
   config.before(:each) do
