@@ -14,6 +14,14 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
 
+  # :focus tag for immediate specs
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
+  # :slow tag to exclude slow tests
+  config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+
   config.include FactoryGirl::Syntax::Methods
 
    # Database Cleaner
