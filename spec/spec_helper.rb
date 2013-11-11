@@ -2,6 +2,7 @@
 ENV['RAILS_ENV'] = 'test' # Orig: ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'webmock/rspec'
 # require 'rspec/autorun' # disabled for Zeus
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -21,6 +22,12 @@ RSpec.configure do |config|
 
   # :slow tag to exclude slow tests
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+
+  # VCR
+  # config.around(:each, :vcr) do |example|
+  #   name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+  #   VCR.use_cassette(name) { example.call }
+  # end
 
   config.include FactoryGirl::Syntax::Methods
 

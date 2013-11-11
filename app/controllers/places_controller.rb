@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
 
-  before_action :set_new_query, only: [:nearby, :search_nearby, :search_in_city]
+  before_action :set_new_query, only: [:nearby, :search_nearby, :search_in_locality]
 
   def nearby
     @location_api.get_places_nearby(latitude: params[:latitude], longitude: params[:longitude], distance: params[:distance])

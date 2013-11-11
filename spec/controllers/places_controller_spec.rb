@@ -1,16 +1,23 @@
 require 'spec_helper'
 
 describe PlacesController do
-  describe "GET #nearby" do
+  describe "GET #nearby", :vcr do
     it "is successful" do
       get :search_nearby
       expect(response).to be_success
     end
   end
 
-  describe "GET #search_nearby" do
+  describe "GET #search_nearby", :vcr do
     it "is successful" do
       get :search_nearby
+      expect(response).to be_success
+    end
+  end
+
+  describe "GET #search_in_locality", :vcr do
+    it "is successful" do
+      get :search_in_locality, locality: "San Francisco"
       expect(response).to be_success
     end
   end
