@@ -7,20 +7,26 @@ class LocationApi
 
   after_initialize :set_initial_query
 
-  def search_with_distance_from_center(options = {})
+  def search_in_locality(options = {})
+    add_search_terms_to_query(options)
+    add_locality_to_query(options)
+  end
+
+  def search_places_nearby(options = {})
     add_nearby_to_query(options)
-    search_terms  = options[:search_terms]
-    @query = @query.search(*search_terms) if search_terms
-    fetch_results
+    add_search_terms_to_query(options)
   end
 
   def get_places_nearby(options = {})
     add_nearby_to_query(options)
-    fetch_results
   end
 
-  def fetch_results
+  def results
     return @query.rows
+  end
+
+  def result
+    return @query.first
   end
 
   private
@@ -31,9 +37,20 @@ class LocationApi
     end
 
     def add_nearby_to_query(options = {})
-      distance = options[:distance] || FACTUAL_DEFAULT_DISTANCE
-      center   = options[:center]
-      @query = @query.geo("$circle" => {"$center" => center, "$meters" => distance}) if center && distance
+      distance  = options[:distance] || ENV['FACTUAL_DEFAULT_DISTANCE']
+      latitude  = options[:latitude]
+      longitude = options[:longitude]
+      @query = @query.geo("$circle" => {"$center" => [latitude, longitude], "$meters" => distance}) if latitude && longitude && distance
+    end
+
+    def add_search_terms_to_query(options = {})
+      search_terms  = options[:search_terms]
+      @query = @query.search(*search_terms) if search_terms
+    end
+
+    def add_locality_to_query(options = {})
+      locality = options[:locality]
+      @query = @query.filters("locality" => locality)
     end
 
 end
