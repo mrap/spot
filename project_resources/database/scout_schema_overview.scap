@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ScappleDocument Version="1.1" ID="3A6DBB62-C8E1-41CC-A490-8E053CF4EC9C">
+    <Notes>
+        <Note ID="6" FontSize="14.0" Position="801.957031,300.046875" Width="59.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="4" Style="Square"></Border>
+            </Appearance>
+            <String>Places</String>
+            <ConnectedNoteIDs>21-22</ConnectedNoteIDs>
+            <PointsToNoteIDs>22</PointsToNoteIDs>
+        </Note>
+        <Note ID="7" FontSize="14.0" Position="88.039062,233.667969" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="4" Style="Square"></Border>
+            </Appearance>
+            <String>Users</String>
+            <Formatting>
+                <FormatRange Bold="Yes">0,5</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="8" FontSize="14.0" Position="419.121094,671.308594" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="4" Style="Square"></Border>
+            </Appearance>
+            <String>Posts</String>
+            <ConnectedNoteIDs>16-17</ConnectedNoteIDs>
+        </Note>
+        <Note ID="9" FontSize="14.0" Position="433.664062,703.992188" Width="93.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>created_at</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="10" FontSize="14.0" Position="435.121094,737.308594" Width="101.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>description</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="11" FontSize="14.0" Position="434.121094,773.308594" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>photo</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="12" FontSize="14.0" Position="435.121094,805.308594" Width="109.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>users_helped</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="14" FontSize="14.0" Position="808.863281,339.167969" Width="42.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>name</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="15" FontSize="14.0" Position="808.773438,378.035156" Width="67.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>address</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="16" FontSize="14.0" Position="811.042969,415.519531" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>posts</String>
+            <ConnectedNoteIDs>8</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="17" FontSize="14.0" Position="109.082031,383.25" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>posts</String>
+            <ConnectedNoteIDs>8</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="18" FontSize="14.0" Position="108.039062,266.621094" Width="76.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>username</String>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="19" FontSize="14.0" Position="107.082031,345.628906" Width="101.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>memberships</String>
+            <ConnectedNoteIDs>22</ConnectedNoteIDs>
+            <PointsToNoteIDs>22</PointsToNoteIDs>
+        </Note>
+        <Note ID="21" FontSize="14.0" Position="106.945312,301.628906" Width="135.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>favorite_places</String>
+            <ConnectedNoteIDs>6</ConnectedNoteIDs>
+            <PointsToNoteIDs>6</PointsToNoteIDs>
+        </Note>
+        <Note ID="22" FontSize="14.0" Position="453.0,376.011719" Width="101.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="4" Style="Square"></Border>
+            </Appearance>
+            <String>Memberships</String>
+            <ConnectedNoteIDs>6, 19</ConnectedNoteIDs>
+        </Note>
+        <Note ID="25" FontSize="14.0" Position="466.183594,413.089844" Width="42.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>rank</String>
+        </Note>
+    </Notes>
+    <BackgroundShapes></BackgroundShapes>
+    <AutoFit>6-12, 14-19, 21-22, 25</AutoFit>
+    <NoteStyles>
+        <Style Name="Title Text" ID="96E7C6F3-308C-4F88-83A2-66872924BF11" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+        <Style Name="Red Text" ID="E8ADE0D4-7516-49C1-A349-F66B350F3D1B" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Brown Bubble" ID="493B8F4B-6349-4EC7-B24B-2ACCFB62FDAE" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.290055 0.1523 0.182215</BorderColor>
+            <FillColor>0.940019 0.892907 0.779716</FillColor>
+        </Style>
+        <Style Name="Yellow Bubble" ID="117123FC-ED97-4AD1-A765-38AB55998E3F" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.756763 0.785592 0.373258</BorderColor>
+            <FillColor>0.906773 0.910625 0.634363</FillColor>
+        </Style>
+        <Style Name="Green Bubble" ID="3FFA861F-1155-4B9E-9C43-8ED725A44064" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.331867 0.609932 0.356197</BorderColor>
+            <FillColor>0.790123 0.882327 0.80198</FillColor>
+        </Style>
+        <Style Name="Blue Bubble" ID="493DEF74-B8C2-4268-9E40-B7D5E8869D3A" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.477193 0.557066 0.76433</BorderColor>
+            <FillColor>0.840969 0.866828 0.925903</FillColor>
+        </Style>
+        <Style Name="Pink Bubble" ID="E7553680-6046-4DB4-9011-50044D596CB4" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.747881 0.366532 0.542813</BorderColor>
+            <FillColor>0.918452 0.807302 0.863467</FillColor>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>0.999737 0.986332 0.931298</BackgroundColor>
+        <DefaultFont>Source Code Pro</DefaultFont>
+    </UISettings>
+    <PrintSettings PaperSize="612.0,792.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="na-letter" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>
