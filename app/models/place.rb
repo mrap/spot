@@ -2,6 +2,7 @@ class Place < Location
   include Mongoid::Document
 
   has_many :posts
+  field :posts_count,       type: Integer,    default: 0
 
   field :name,              type: String
   field :address,           type: String

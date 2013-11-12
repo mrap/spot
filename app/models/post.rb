@@ -16,4 +16,13 @@ class Post
     convert_options: { all: '-background white -flatten +matte' },
     dependent: :destroy
 
+  after_create  :update_place_posts_count
+  after_destroy :update_place_posts_count
+
+  private
+
+    def update_place_posts_count
+      self.place.posts_count = self.place.posts.count
+    end
+
 end
