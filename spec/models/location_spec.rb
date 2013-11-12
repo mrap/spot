@@ -24,4 +24,20 @@ describe Location do
       end
     end
   end
+
+  describe "calculating distances" do
+    let(:my_coordinates) { build(:location, coordinates: {latitude: "37.781127", longitude: "-122.417102" }) } # City Hall
+    let(:ball_park) { create(:location, coordinates: {latitude: "37.778949", longitude: "-122.389329"}) }
+
+    describe ".distance_to()" do
+      it "return in miles (default)" do
+        ball_park.distance_to(my_coordinates).should be_close 1.56, 0.1
+        ball_park.distance_to(my_coordinates, miles: true).should be_close 1.56, 0.1
+      end
+
+      it "return in kilometers" do
+        ball_park.distance_to(my_coordinates, kilometers: true).should be_close 2.5, 0.1
+      end
+    end
+  end
 end
