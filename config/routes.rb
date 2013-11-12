@@ -1,4 +1,13 @@
 Scout::Application.routes.draw do
+
+  resources :places, defaults: { format: 'json' } do
+    collection do
+      get 'nearby'
+      get 'search_nearby'
+      get 'search_in_locality'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

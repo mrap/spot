@@ -13,15 +13,22 @@ gem 'figaro'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Location Gems
+gem 'factual-api'
+gem 'vincenty'
+gem 'mongoid_geospatial'
+
 # Attachments
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
 gem 'zeus-parallel_tests'
+gem 'webmock'
 
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'vcr'
 end
 
 group :development do
