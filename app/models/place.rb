@@ -15,4 +15,6 @@ class Place < Location
 
   validates_presence_of :name
 
+  scope :most_posts, order_by(posts_count: :desc)
+
 end
