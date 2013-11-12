@@ -16,6 +16,7 @@ gem 'bson_ext'
 # Location Gems
 gem 'factual-api'
 gem 'vincenty'
+gem 'mongoid_geospatial'
 
 # Attachments
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'

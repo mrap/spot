@@ -1,4 +1,4 @@
-class Place
+class Place < Location
   METERS_PER_MILE = 1609.344
 
   include Mongoid::Document
@@ -13,8 +13,7 @@ class Place
   field :region,            type: String
   field :country,           type: String
   field :postcode,          type: String
-  field :latitude,          type: Float
-  field :longitude,         type: Float
+
   validates_presence_of :name
 
   def meters_from_coordinates(options = {})
