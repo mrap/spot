@@ -4,7 +4,7 @@ class Post
   include Mongoid::Paperclip
 
   belongs_to :user
-  belongs_to :post
+  belongs_to :place
   has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
 
   field :description
