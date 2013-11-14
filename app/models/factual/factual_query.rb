@@ -35,10 +35,9 @@ class FactualQuery
     end
 
     def add_nearby_to_query(options = {})
-      distance  = options[:distance] || ENV['FACTUAL_DEFAULT_DISTANCE']
-      latitude  = options[:latitude]
-      longitude = options[:longitude]
-      @query = @query.geo("$circle" => {"$center" => [latitude, longitude], "$meters" => distance}) if latitude && longitude && distance
+      radius = options[:radius] || ENV['FACTUAL_DEFAULT_DISTANCE']
+      coordinates = options[:coordinates]
+      @query = @query.geo("$circle" => {"$center" => [coordinates.latitude, coordinates.longitude], "$meters" => radius }) if coordinates && radius
     end
 
     def add_search_terms_to_query(options = {})
