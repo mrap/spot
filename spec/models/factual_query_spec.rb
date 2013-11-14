@@ -5,10 +5,10 @@ describe FactualQuery do
 
   it { should_not be_nil }
 
-  describe ".get_places_nearby", :vcr do
+  describe ".get_places_near_coordinates_within_radius", :vcr => { record: :new_episodes } do
     let(:colma_coordinates) { build(:chipotle_factual_place).coordinates }
     subject(:results) do
-      factual_query.get_places_nearby(coordinates: colma_coordinates)
+      factual_query.get_places_near_coordinates_within_radius(colma_coordinates, 300)
       factual_query.results
     end
 
@@ -17,9 +17,9 @@ describe FactualQuery do
     end
   end
 
-  describe ".search_in_locality", :vcr do
+  describe ".search_places_in_locality", :vcr do
     subject(:first_result) do
-      factual_query.search_in_locality(search_terms: "Chipotle", locality: "Colma")
+      factual_query.search_places_in_locality("Chipotle", "Colma")
       factual_query.results.first
     end
 
@@ -29,10 +29,10 @@ describe FactualQuery do
     end
   end
 
-  describe ".search_places_nearby", :vcr do
+  describe ".search_places_near_coordinates_within_radius", :vcr do
     let(:colma_coordinates) { build(:chipotle_factual_place).coordinates }
     subject(:first_result) do
-      factual_query.search_places_nearby(search_terms: "Chipotle", coordinates: colma_coordinates)
+      factual_query.search_places_near_coordinates_within_radius("Chipotle", colma_coordinates, 300)
       factual_query.results.first
     end
 

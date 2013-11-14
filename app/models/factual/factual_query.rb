@@ -5,18 +5,24 @@ class FactualQuery
 
   after_initialize :set_initial_query
 
-  def get_places_nearby(options = {})
-    add_nearby_to_query(options)
+  def get_places_near_coordinates_within_radius(coordinates = nil, radius = nil)
+    if coordinates
+      add_nearby_to_query(coordinates: coordinates, radius: radius)
+    end
   end
 
-  def search_in_locality(options = {})
-    add_search_terms_to_query(options)
-    add_locality_to_query(options)
+  def search_places_in_locality(search_terms = nil, locality = nil)
+    if search_terms && locality
+      add_search_terms_to_query(search_terms: search_terms)
+      add_locality_to_query(locality: locality)
+    end
   end
 
-  def search_places_nearby(options = {})
-    add_nearby_to_query(options)
-    add_search_terms_to_query(options)
+  def search_places_near_coordinates_within_radius(search_terms = nil, coordinates = nil, radius = nil)
+    if search_terms && coordinates
+      add_nearby_to_query(coordinates: coordinates, radius: radius)
+      add_search_terms_to_query(search_terms: search_terms)
+    end
   end
 
   def results
