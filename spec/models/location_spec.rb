@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 describe Location do
+  subject(:location) { build(:location) }
 
   it { should have_field(:coordinates).with_default_value_of(nil) }
   it { should validate_presence_of :coordinates }
+
+  describe "coordinates helper methods" do
+    its(:longitude) { should eq location.coordinates.to_hsh[:x] }
+    its(:latitude) { should eq location.coordinates.to_hsh[:y] }
+  end
 
   describe "finding nearby locations" do
      before do
