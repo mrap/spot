@@ -29,6 +29,11 @@ describe Location do
         results.should include @nearby_location
         results.should_not include @far_location
       end
+      it "using meters" do
+        results = @my_location.nearby_with_distance(meters: 1000).to_a
+        results.should include @nearby_location
+        results.should_not include @far_location
+      end
     end
 
     describe ".nearby" do

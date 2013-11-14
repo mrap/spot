@@ -1,6 +1,7 @@
 class Location
   MILES_PER_ARCDEG = 69
   KILOMETERS_PER_ARCDEG = 111
+  METERS_PER_ARCDEG = 111_000
   METERS_PER_MILE = 1609.344
 
   include Mongoid::Document
@@ -17,6 +18,7 @@ class Location
   end
 
   def nearby_with_distance(options)
+    distance =   Location.meters_to_arcdeg(options[:meters]) if options[:meters]
     distance =   Location.miles_to_arcdeg(options[:miles]) if options[:miles]
     distance =   Location.kilometers_to_arcdeg(options[:kilometers]) if options[:kilometers]
     distance ||= options || 0
@@ -52,6 +54,10 @@ class Location
 
     def self.kilometers_to_arcdeg(kilometers)
       kilometers.fdiv(KILOMETERS_PER_ARCDEG)
+    end
+
+    def self.meters_to_arcdeg(meters)
+      meters.fdiv(METERS_PER_ARCDEG)
     end
 
     def self.meters_to_miles(meters)
