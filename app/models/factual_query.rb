@@ -1,8 +1,6 @@
 require 'factual'
 
-
-
-class LocationApi
+class FactualQuery
   include Mongoid::Document
 
   after_initialize :set_initial_query
