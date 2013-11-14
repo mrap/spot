@@ -5,6 +5,10 @@ class FactualQuery
 
   after_initialize :set_initial_query
 
+  def get_places_nearby(options = {})
+    add_nearby_to_query(options)
+  end
+
   def search_in_locality(options = {})
     add_search_terms_to_query(options)
     add_locality_to_query(options)
@@ -13,10 +17,6 @@ class FactualQuery
   def search_places_nearby(options = {})
     add_nearby_to_query(options)
     add_search_terms_to_query(options)
-  end
-
-  def get_places_nearby(options = {})
-    add_nearby_to_query(options)
   end
 
   def results
