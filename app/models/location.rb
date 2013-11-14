@@ -36,11 +36,11 @@ class Location
   end
 
   def longitude
-    self.coordinates.to_hsh[:x]
+    self.coordinates.longitude
   end
 
   def latitude
-    self.coordinates.to_hsh[:y]
+    self.coordinates.latitude
   end
 
   private
