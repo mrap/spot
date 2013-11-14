@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Location do
 
-  it { should have_fields :coordinates, :created_at }
+  it { should have_field(:coordinates).with_default_value_of(nil) }
   it { should validate_presence_of :coordinates }
 
   describe "finding nearby locations" do
