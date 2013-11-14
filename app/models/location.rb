@@ -10,15 +10,17 @@ class Location
   geo_field :coordinates
   validates_presence_of :coordinates
 
+  scope :nearby,  ->(location) { Location.near(coordinates: location.coordinates)  }
+
   def nearby
-    Location.geo_near(self.coordinates.to_a)
+    Location.nearby(self)
   end
 
   def nearby_with_distance(options)
     distance =   Location.miles_to_arcdeg(options[:miles]) if options[:miles]
     distance =   Location.kilometers_to_arcdeg(options[:kilometers]) if options[:kilometers]
     distance ||= options || 0
-    nearby.max_distance(distance)
+    Location.nearby(self).max_distance(coordinates: distance)
   end
 
   def distance_to(to_location, unit_type = { miles: true })
