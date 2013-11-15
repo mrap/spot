@@ -19,20 +19,15 @@ describe Location do
     end
 
     describe ".nearby_with_distance(options)" do
-      it "using miles" do
-        results = @my_location.nearby_with_distance(miles: 1).to_a
-        results.should include @nearby_location
-        results.should_not include @far_location
-      end
-      it "using kilometers" do
-        results = @my_location.nearby_with_distance(kilometers: 1).to_a
-        results.should include @nearby_location
-        results.should_not include @far_location
-      end
       it "using meters" do
-        results = @my_location.nearby_with_distance(meters: 1000).to_a
+        results = @my_location.nearby_within_distance_with_limit(1000).to_a
         results.should include @nearby_location
         results.should_not include @far_location
+      end
+      it "with :limit option" do
+        @nearby_location2 = create(:location, coordinates: { latitude: 37.781128, longitude: -122.417103 })
+        results = @my_location.nearby_within_distance_with_limit(1000, 1).to_a
+        results.count.should eq 1
       end
     end
 
@@ -45,19 +40,12 @@ describe Location do
     end
   end
 
-  describe "calculating distances" do
+  describe ".distance_to(location)" do
     let(:my_coordinates) { build(:location, coordinates: {latitude: "37.781127", longitude: "-122.417102" }) } # City Hall
     let(:ball_park) { create(:location, coordinates: {latitude: "37.778949", longitude: "-122.389329"}) }
+    subject { ball_park.distance_to(my_coordinates) }
 
-    describe ".distance_to()" do
-      it "return in miles (default)" do
-        ball_park.distance_to(my_coordinates).should be_close 1.56, 0.1
-        ball_park.distance_to(my_coordinates, miles: true).should be_close 1.56, 0.1
-      end
-
-      it "return in kilometers" do
-        ball_park.distance_to(my_coordinates, kilometers: true).should be_close 2.5, 0.1
-      end
-    end
+    it { should be_close 2500, 100 } # meters
+    it { should be_kind_of Float }
   end
 end

@@ -3,8 +3,10 @@ class PlacesController < ApplicationController
   before_action :set_new_query, only: [:nearby, :search_nearby, :search_in_locality]
 
   def nearby
-    @factual_query.get_places_nearby(latitude: params[:latitude], longitude: params[:longitude], distance: params[:distance])
-    render json: @factual_query.results
+    if coordinates = Location.new(coordinates: { latitude: params[:latitude], longitude: params[:longitude] })
+      @query.places_near_coordinates_within_radius(coordinates, params[:distance])
+      render json: @query.results
+    end
   end
 
   def search_nearby
@@ -22,7 +24,7 @@ class PlacesController < ApplicationController
   private
 
     def set_new_query
-      @factual_query = FactualQuery.new
+      @query = PlaceQuery.new
     end
 
 end

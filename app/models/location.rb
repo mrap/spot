@@ -17,24 +17,21 @@ class Location
     Location.nearby(self)
   end
 
-  def nearby_with_distance(options)
-    distance =   Location.meters_to_arcdeg(options[:meters]) if options[:meters]
-    distance =   Location.miles_to_arcdeg(options[:miles]) if options[:miles]
-    distance =   Location.kilometers_to_arcdeg(options[:kilometers]) if options[:kilometers]
-    distance ||= options || 0
-    Location.nearby(self).max_distance(coordinates: distance)
+  def nearby_within_distance_with_limit(distance = ENV['DEFAULT_SEARCH_RADIUS'], limit = nil)
+    # Convert meters to arcdeg
+    distance = Location.meters_to_arcdeg(distance)
+
+    if limit
+      Location.nearby(self).max_distance(coordinates: distance).limit(limit)
+    else
+      Location.nearby(self).max_distance(coordinates: distance)
+    end
   end
 
-  def distance_to(to_location, unit_type = { miles: true })
+  def distance_to(to_location)
     from     = Vincenty.new(self.latitude, self.longitude)
     to       = Vincenty.new(to_location.latitude, to_location.longitude)
-    distance = from.distanceAndAngle(to).distance
-
-    if unit_type[:kilometers]
-      Location.meters_to_kilometers(distance)
-    else
-      Location.meters_to_miles(distance)
-    end
+    return from.distanceAndAngle(to).distance
   end
 
   def longitude
@@ -48,6 +45,7 @@ class Location
   private
 
     # Helpers
+
     def self.miles_to_arcdeg(miles)
       miles.fdiv(MILES_PER_ARCDEG)
     end
