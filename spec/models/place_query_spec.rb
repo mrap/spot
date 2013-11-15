@@ -12,9 +12,9 @@ describe PlaceQuery do
       @starbucks = create(:starbucks_factual_place)
     end
 
-    describe ".places_near_coordinates_within_radius", :vcr do
+    describe ".search_nearby_coordinates", :vcr do
       subject(:results) do
-        place_query.places_near_coordinates_within_radius(my_coordinates, 1000)
+        place_query.search_nearby_coordinates(my_coordinates, radius: 1000)
         place_query.results
       end
       it "should include starbucks" do
@@ -24,5 +24,20 @@ describe PlaceQuery do
         results.count.should > 1
       end
     end
+
+    # describe ".search_places_near_coordinates_within_radius" do
+    #   subject(:results) do
+    #     place_query.search_places_near_coordinates_within_radius("chipotle", my_coordinates, 1000)
+    #     place_query.results
+    #   end
+    #   it "should include starbucks" do
+    #     results.should_not include @starbucks
+    #   end
+    #   it "should include Chipotle place ref from factual api" do
+    #     api_ref = results.first
+    #     api_ref.name.should match "Chipotle"
+    #     FactualPlace.where(factual_id: api_ref.factual_id).should_not exist
+    #   end
+    # end
   end
 end
