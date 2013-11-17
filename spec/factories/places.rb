@@ -1,7 +1,14 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+MAX_COORDINATE = 179.9999999
+MIN_COORDINATE = -179.9999999
+def random_coordinate
+  rand * (MAX_COORDINATE-MIN_COORDINATE) + MIN_COORDINATE
+end
+
 FactoryGirl.define do
-  factory :place, class: Place, parent: :location do
+  factory :place do
     sequence(:name)   { |n| "Place #{n}" }
+    coordinates   { { lat: random_coordinate, long: random_coordinate } }
   end
 end

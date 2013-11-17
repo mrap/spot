@@ -122,6 +122,10 @@ GEM
       activemodel (>= 3.2)
       activesupport (>= 3.2)
       mongoid (>= 3.0.0)
+    mongoid_indexing (0.1.2)
+      mongoid (>= 3)
+      moped (>= 1.4)
+      rails (>= 3.1)
     moped (2.0.0.beta3)
       bson (~> 2.0.0.rc3)
       optionable (~> 0.1.1)
@@ -247,6 +251,7 @@ DEPENDENCIES
   mongoid-paperclip
   mongoid-rspec
   mongoid_geospatial
+  mongoid_indexing
   rails (= 4.0.1)
   rspec-rails
   sass-rails (~> 4.0.0)
