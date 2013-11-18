@@ -12,6 +12,14 @@ describe PostToPlaceEvent do
     its(:initiator) { should eq event.post.user }
   end
 
+  context "when post is first post of place" do
+    let(:user)  { create(:user) }
+    let(:place) { create(:place) }
+    let(:post)  { create(:post, place: place, user: user) }
+    it "should increase the user score by 50" do
+      expect{ post }.to change{ user.score }.by(50)
+    end
+  end
 
   # context "when creating a PostEvent" do
   #   before do
