@@ -28,24 +28,20 @@ describe Place do
 
   let(:coordinates) { Coordinates.new(-122.417102, 37.781127)  }
 
-  describe "querying for nearby coordinates" do
-     before do
+  describe "nearby_coordinates" do
+    before do
       @nearby_place = create(:place, coordinates: coordinates)
       # far place is definitely greater than 1000 meters away
       @far_place = create(:place, coordinates: { latitude: coordinates.longitude, longitude: coordinates.latitude })
     end
-
-    describe "nearby_coordinates" do
-      context "with :radius" do
-        subject(:results) { Place.nearby_coordinates(coordinates, radius: 1000).to_a }
-
-        it { should include @nearby_place }
-        it { should_not include @far_place }
-      end
-      context "without :radius" do
-        subject(:results) { Place.nearby_coordinates(coordinates).to_a }
-        it { should include @far_place }
-      end
+    context "with :radius" do
+      subject(:results) { Place.nearby_coordinates(coordinates, radius: 1000).to_a }
+      it { should include @nearby_place }
+      it { should_not include @far_place }
+    end
+    context "without :radius" do
+      subject(:results) { Place.nearby_coordinates(coordinates).to_a }
+      it { should include @far_place }
     end
   end
 
