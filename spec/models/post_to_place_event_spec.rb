@@ -20,18 +20,4 @@ describe PostToPlaceEvent do
       expect{ post }.to change{ user.score }.by(50)
     end
   end
-
-  # context "when creating a PostEvent" do
-  #   before do
-  #     @recently_updated_place     = create(:place)
-  #     @not_recently_updated_place = create(:place)
-  #     create(:post, place: @recently_updated_place, created_at: DateTime.now.advance(minutes: -1))
-  #     create(:post, place: @not_recently_updated_place, created_at: DateTime.now.advance(minutes: -30))
-  #   end
-
-  #   it "score_change increases based on the time since place's last post" do
-  #     post_event = create(:post_to_place_event, place: @recently_update_place, post: create(:post, place: @recently_update_place))
-
-  #   end
-  # end
 end
