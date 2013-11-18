@@ -4,6 +4,7 @@ describe User do
 
   it { should have_many :posts }
   it { should have_and_belong_to_many(:helpful_posts).of_type(Post).as_inverse_of(:helped_users) }
+  it { should have_many(:events).as_inverse_of(:initiator) }
   it { should have_field :username }
   it { should have_field(:score).of_type(Integer).with_default_value_of(0) }
   it { should validate_presence_of :username }
