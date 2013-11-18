@@ -15,10 +15,21 @@ describe PostToPlaceEvent do
   describe "scoring" do
     let(:user)  { create(:user) }
     let(:place) { create(:place) }
-    let(:first_post)  { create(:post, place: place, user: user) }
+    let(:post)  { create(:post, place: place, user: user) }
     context "when post is first post of place" do
       it "should increase the user score by 50" do
-        expect{ first_post }.to change{ user.score }.by(50)
+        expect{ post }.to change{ user.score }.by(50)
+      end
+    end
+    context "when post already has first post" do
+      let(:place) { create(:place_with_post) }
+      it "should increase the user score with a minimum of 10 points" do
+        user.score.should eq 0
+        post
+        user.score.should >= 10
+      end
+      it "should increase the user score based on the last post's time" do
+
       end
     end
   end
