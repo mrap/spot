@@ -7,7 +7,7 @@ class PostToPlaceEvent < Event
 
   validates_presence_of :place, :post
 
-  before_create :set_initiator_to_post_user, :add_score_bonuses
+  before_create :set_initiator_to_post_user, :set_scores
 
   private
 
@@ -17,9 +17,13 @@ class PostToPlaceEvent < Event
 
     # Score Logic
 
-    def add_score_bonuses
+    def set_scores
       self.score_change = S_DEFAULT
-      self.score_change += S_B_FIRST_POST if first_post?
+      add_score_bonuses
+    end
+
+    def add_score_bonuses
+      self.score_bonus += S_B_FIRST_POST if first_post?
     end
 
     def first_post?
