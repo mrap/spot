@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Event do
-  it { should belong_to :initiator }
+  it { should belong_to(:initiator).as_inverse_of(:events) }
   it { should have_field :created_at }
   it { should have_field(:score_change).of_type(Integer).with_default_value_of(0) }
   it { should have_field(:description).of_type(String) }
-  it { should validate_presence_of :initiator }
 
   context "when creating an event" do
     let(:user)  { create(:user) }

@@ -7,8 +7,9 @@ class Place
   METERS_PER_ARCDEG = 111_000
 
   has_many :posts
-  field :posts_count,       type: Integer,    default: 0
+  has_many :post_to_place_events, dependent: :destroy
 
+  field :posts_count,       type: Integer,    default: 0
   field :name,              type: String
   field :address,           type: String
   field :address_extended,  type: String

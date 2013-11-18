@@ -2,14 +2,12 @@ class Event
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  belongs_to :initiator, polymorphic: true
+  belongs_to :initiator, class_name: "User", inverse_of: :events
 
   field :score_change, type: Integer, default: 0
   field :description,  type: String
 
-  validates_presence_of :initiator
-
-  before_create :update_initiator_score
+  after_create :update_initiator_score
   before_create :set_default_description
 
   private
