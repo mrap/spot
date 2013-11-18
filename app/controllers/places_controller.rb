@@ -1,16 +1,16 @@
 class PlacesController < ApplicationController
 
+  before_action :require_coordinates!, only: [:nearby]
   before_action :set_new_query, only: [:nearby, :search_nearby, :search_in_locality]
 
+
   def nearby
-    if coordinates = Location.new(coordinates: { latitude: params[:latitude], longitude: params[:longitude] })
-      @query.places_near_coordinates_within_radius(coordinates, params[:distance])
-      render json: @query.results
-    end
+    @place_query.search_nearby_coordinates(@coordinates, radius: params[:radius], search_terms: params[:search_terms])
+    render json: @place_query.results
   end
 
   def search_nearby
-    @factual_query.search_places_nearby(search_terms: params[:search_terms], latitude: params[:latitude], longitude: params[:longitude], distance: params[:distance])
+    @place_query.search_places_nearby(search_terms: params[:search_terms], latitude: params[:latitude], longitude: params[:longitude], distance: params[:distance])
     render json: @factual_query.results
   end
 
@@ -24,7 +24,19 @@ class PlacesController < ApplicationController
   private
 
     def set_new_query
-      @query = PlaceQuery.new
+      @place_query = PlaceQuery.new
     end
 
+    def require_coordinates!
+      set_coordinates
+      unless @coordinates
+        render nothing: true, status: :bad_request
+      end
+    end
+
+    def set_coordinates
+      if params[:longitude] && params[:latitude]
+        @coordinates = Coordinates.new(params[:longitude], params[:latitude])
+      end
+    end
 end

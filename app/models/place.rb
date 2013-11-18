@@ -25,8 +25,8 @@ class Place
   search_in :name
 
   def self.nearby_coordinates(coordinates, options = {})
-    if options[:radius] && options[:radius] > 0
-      radius = Place.meters_to_arcdeg(options[:radius])
+    if options[:radius]
+      radius = Place.meters_to_arcdeg(options[:radius].to_f)
       Place.near(coordinates: coordinates).max_distance(coordinates: radius)
     else
       Place.near(coordinates: coordinates)
