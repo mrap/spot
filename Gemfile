@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'mongoid_indexing'
+gem 'mongoid_search'
 
 # Location Gems
 gem 'factual-api'

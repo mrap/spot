@@ -57,4 +57,11 @@ describe Place do
     it { should be_kind_of Float }
   end
 
+  describe "full text search" do
+    before do
+      @chipotle  = create(:chipotle_factual_place)
+      @starbucks = create(:starbucks_factual_place)
+    end
+  end
+
 end

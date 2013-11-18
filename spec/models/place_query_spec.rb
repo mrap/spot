@@ -4,7 +4,6 @@ describe PlaceQuery do
   subject(:place_query) { build(:place_query) }
 
   it { should have_field(:results).with_default_value_of(nil) }
-  its(:factual_query) { should_not be_nil }
 
   describe "querying the factual api and FactualPlaces in database" do
     let(:my_coordinates) { build(:chipotle_factual_place).coordinates }
@@ -23,6 +22,22 @@ describe PlaceQuery do
         end
         it "should have other results from the factual_api" do
           results.count.should > 1
+        end
+      end
+
+      context "with :search_text option", :vcr do
+        context "when 'Chipotle' already in the database" do
+          before { @chipotle = create(:chipotle_factual_place) }
+          subject(:results) do
+            place_query.search_nearby_coordinates(my_coordinates, search_terms: "chipotle", radius: 1000)
+            place_query.results
+          end
+          it "should have other results from the factual_api" do
+            results.count.should eq 1
+          end
+          it "should return the Chipotle location" do
+            results.first.should eq @chipotle
+          end
         end
       end
     end

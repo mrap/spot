@@ -4,19 +4,23 @@ class PlaceQuery
 
   field :results, type: Array,  default: nil
 
-  after_initialize :factual_query
-
   def search_nearby_coordinates(coordinates, options = {})
     return unless valid_coordinates?(coordinates)
 
     radius = options[:radius] || ENV['DEFAULT_SEARCH_RADIUS']
+    factual_query = FactualQuery.new
 
-    # Get FactualPlaces (in database)
-    # database_places = location.nearby_within_distance_with_limit(radius, DEFAULT_PLACES_QUERY_LIMIT)
-    database_places = Place.nearby_coordinates(coordinates, radius: radius)
+    if options[:search_terms]
+      # Get FactualPlaces (in database)
+      database_places = Place.nearby_coordinates(coordinates, radius: radius).full_text_search(options[:search_terms])
+      factual_query.nearby_coordinates(coordinates, search_terms: options[:search_terms], radius: radius)
+    else
+      # Get Factual API Places to results
+      database_places = Place.nearby_coordinates(coordinates, radius: radius)
+      factual_api_refs = factual_query.nearby_coordinates(coordinates, radius: radius)
+    end
 
-    # Get Factual API Places to results
-    factual_api_refs = factual_query.get_places_near_coordinates_within_radius(coordinates, radius)
+    factual_api_refs = factual_query.results
 
     # Fill factual_api_places with FactualPlace instances built from api_refs.  Only non-duplicates.
     merged_places = merge_places_with_api_refs(database_places, factual_api_refs)
@@ -27,8 +31,11 @@ class PlaceQuery
 
   private
 
-    def merge_places_with_api_refs(places = [], api_refs = [])
+    def merge_places_with_api_refs(places = nil, api_refs = nil)
+      places   = [] unless places
+      api_refs = [] unless api_refs
       factual_places = []
+
       api_refs.each do |api_ref|
         is_duplicate = false
         places.each do |place|
@@ -39,11 +46,8 @@ class PlaceQuery
         end
         factual_places << FactualPlace.build_from_api_ref(api_ref) unless is_duplicate
       end
-      return places + factual_places
-    end
 
-    def factual_query
-      @factual_query ||= FactualQuery.new
+      return places + factual_places
     end
 
     def valid_coordinates?(coordinates)

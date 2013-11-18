@@ -2,6 +2,8 @@ class Place
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Geospatial
+  include Mongoid::Search
+
   METERS_PER_ARCDEG = 111_000
 
   has_many :posts
@@ -20,6 +22,7 @@ class Place
   validates_presence_of :name, :coordinates
 
   scope :most_posts, ->{ order_by(posts_count: :desc) }
+  search_in :name
 
   def self.nearby_coordinates(coordinates, options = {})
     if options[:radius] && options[:radius] > 0
