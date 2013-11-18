@@ -5,6 +5,7 @@ class Event
   belongs_to :initiator, class_name: "User", inverse_of: :events
 
   field :score_change, type: Integer, default: 0
+  field :score_bonus,  type: Integer, default: 0
   field :description,  type: String
 
   after_create :update_initiator_score
@@ -17,7 +18,9 @@ class Event
     end
 
     def update_initiator_score
-      self.initiator.score += self.score_change if self.initiator.score
+      if self.initiator.score
+        self.initiator.score += self.score_change + self.score_bonus
+      end
     end
 
 end
