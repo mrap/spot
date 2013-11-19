@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :event do
-    initiator { create(:user) }
+  factory :post_reward, class: PostReward, parent: :reward do
+    post  { create(:post) }
   end
 end

@@ -6,7 +6,7 @@ class Post
   belongs_to :user, inverse_of: :posts
   belongs_to :place
   has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
-  has_one :post_to_place_event, dependent: :destroy
+  has_one :post_reward, dependent: :destroy
 
   field :description
   has_mongoid_attached_file :photo,
@@ -20,7 +20,7 @@ class Post
   validates_presence_of :user
 
   after_create  :update_place_posts_count
-  after_create  :create_post_to_place_event
+  after_create  :create_post_reward
   after_destroy :update_place_posts_count
 
   private
@@ -29,8 +29,8 @@ class Post
       self.place.posts_count = self.place.posts.count
     end
 
-    def create_post_to_place_event
-      PostToPlaceEvent.create!(place: self.place, post: self)
+    def create_post_reward
+      PostReward.create!(post: self)
     end
 
 end

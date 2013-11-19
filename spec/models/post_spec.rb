@@ -4,7 +4,7 @@ describe Post do
 
   it { should belong_to :user }
   it { should belong_to :place }
-  it { should have_one(:post_to_place_event).with_dependent(:destroy) }
+  it { should have_one(:post_reward).with_dependent(:destroy) }
   it { should have_and_belong_to_many(:helped_users).of_type(User).as_inverse_of(:helpful_posts) }
   it { should have_field :created_at }
   it { should have_field :description }
@@ -22,7 +22,7 @@ describe Post do
       expect{ @post.destroy }.to change{ place.posts_count }
     end
     it "should create a post_to_place_event" do
-      expect{ @post = create(:post, place: place) }.to change{ PostToPlaceEvent.count }.by(1)
+      expect{ @post = create(:post, place: place) }.to change{ PostReward.count }.by(1)
     end
   end
 end

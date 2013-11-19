@@ -1,15 +1,14 @@
 require 'spec_helper'
 
-describe PostToPlaceEvent do
-  it { should be_kind_of Event }
-  it { should belong_to :place }
+describe PostReward do
+  it { should be_kind_of Reward }
   it { should belong_to :post }
-  it { should validate_presence_of :place }
   it { should validate_presence_of :post }
 
-  context "when creating a PostToPlaceEvent" do
-    subject(:event) { create(:post_to_place_event) }
-    its(:initiator) { should eq event.post.user }
+  context "when creating a PostReward" do
+    subject(:reward)         { create(:post_reward) }
+    its(:giver)     { should eq reward.post.user }
+    its(:receiver)  { should eq reward.post.user }
   end
 
   describe "scoring" do
