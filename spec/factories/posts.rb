@@ -11,7 +11,7 @@ FactoryGirl.define do
 
     trait :with_helped_user do
       after(:create) do |post|
-        create(:user)
+        user = create(:user)
         user.helpful_posts << post
       end
     end
