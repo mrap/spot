@@ -1,4 +1,4 @@
-class Streak
+class PostStreak
   include Mongoid::Document
 
   has_many :posts
