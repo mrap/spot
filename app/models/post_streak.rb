@@ -15,8 +15,12 @@ class PostStreak
   end
 
   def self.streakable_place?(place)
-    return true unless  place.posts_count < POST_STREAK_MINIMUM_POSTS_COUNT ||
-                        place.post_streaks.where(expired: false).exists?
+    if place.post_streaks.where(expired: false).exists? ||
+       !place_has_valid_posts_for_new_streak?(place)
+      return false
+    else
+      return true
+    end
   end
 
   private
@@ -25,4 +29,17 @@ class PostStreak
       errors.add(:posts, "not enough") if posts.size < POST_STREAK_MINIMUM_POSTS_COUNT
     end
 
+    def self.place_has_valid_posts_for_new_streak?(place)
+      return false if place.posts_count < POST_STREAK_MINIMUM_POSTS_COUNT
+
+      latest_posts = place.posts.recent.limit(POST_STREAK_MINIMUM_POSTS_COUNT)
+      latest_posts.each_with_index do |post, i|
+        unless i == 0 # skip first item
+          post_before  = latest_posts[i-1]
+          time_between = post_before.created_at - post.created_at
+          return false if time_between > POST_STREAK_EXPIRATION_INTERVAL
+        end
+      end
+      return true
+    end
 end

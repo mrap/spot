@@ -29,6 +29,13 @@ describe PostStreak do
         streakable?.should eq false
       end
     end
+    context "when place's last #{POST_STREAK_MINIMUM_POSTS_COUNT} posts are not within the POST_STREAK_EXPIRATION_INTERVAL" do
+      let(:place) { create(:place_with_posts, posts_count: POST_STREAK_MINIMUM_POSTS_COUNT - 1) }
+      before      { create(:post, place: place, created_at: PostStreak.new_expiration_time.advance(seconds: 1)) }
+      it "should return false" do
+        streakable?.should eq false
+      end
+    end
   end
 
   # Instance Specs
