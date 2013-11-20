@@ -4,6 +4,7 @@ describe Post do
 
   it { should belong_to :author }
   it { should belong_to :place }
+  it { should belong_to :streak }
   it { should have_one(:post_reward).with_dependent(:destroy) }
   it { should have_many(:helpful_post_rewards).with_dependent(:destroy) }
   it { should have_and_belong_to_many(:helped_users).of_type(User).as_inverse_of(:helpful_posts) }

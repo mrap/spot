@@ -5,6 +5,7 @@ class Post
 
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :place
+  belongs_to :streak
   has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
   has_one :post_reward, dependent: :destroy
   has_many :helpful_post_rewards, dependent: :destroy
