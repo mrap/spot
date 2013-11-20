@@ -7,6 +7,7 @@ class Place
   METERS_PER_ARCDEG = 111_000
 
   has_many :posts
+  has_many :post_streaks
 
   field :posts_count,       type: Integer,    default: 0
   field :name,              type: String

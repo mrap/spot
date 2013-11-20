@@ -1,6 +1,7 @@
 class PostStreak
   include Mongoid::Document
 
+  belongs_to :place
   has_many :posts
 
   validate :validate_minimum_posts_count

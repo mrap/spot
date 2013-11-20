@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe PostStreak do
+
+  it { should belong_to :place }
   it { should have_many :posts }
 
   it "should not allow post_streaks that do not have the minimum amount of posts" do

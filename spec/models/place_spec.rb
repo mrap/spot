@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Place do
   # Relations
   it { should have_many :posts }
+  it { should have_many :post_streaks }
 
   # Fields
   it { should have_fields :name,
