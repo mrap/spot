@@ -18,5 +18,23 @@ FactoryGirl.define do
     end
 
     factory :place_with_post, traits: [:with_post]
+
+    factory :place_with_posts do
+      ignore do
+        posts_count 2
+      end
+      after(:create) do |place, evaluator|
+        create_list(:post, evaluator.posts_count, place: place)
+      end
+    end
+
+    factory :place_with_post_streak do
+      after(:create) do |place|
+        create(:post_streak, place: place)
+        place.post_streaks.first.posts.each do |post|
+          post.place = place
+        end
+      end
+    end
   end
 end

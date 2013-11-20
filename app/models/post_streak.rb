@@ -14,10 +14,20 @@ class PostStreak
     Time.zone.now.advance(seconds: POST_STREAK_EXPIRATION_INTERVAL)
   end
 
+  def self.streakable_place?(place)
+    if place.posts_count < POST_STREAK_MINIMUM_POSTS_COUNT
+      return false
+    elsif place.post_streaks.where(expired: false).exists?
+      return false
+    else
+      return true
+    end
+  end
+
   private
 
     def validate_minimum_posts_count
-      errors.add(:posts, "not enough") if posts.size < MINIMUM_POSTS_PER_STREAK
+      errors.add(:posts, "not enough") if posts.size < POST_STREAK_MINIMUM_POSTS_COUNT
     end
 
 end
