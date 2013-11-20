@@ -25,6 +25,8 @@ class Post
   after_create  :create_post_reward
   after_destroy :update_place_posts_count
 
+  scope :recent, ->{ order_by(created_at: :desc) }
+
   def add_helped_user(user)
     if self.helped_users << user
       HelpfulPostReward.create!(post: self, giver: user)
