@@ -3,7 +3,7 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  belongs_to :user, inverse_of: :posts
+  belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :place
   has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
   has_one :post_reward, dependent: :destroy
@@ -18,7 +18,7 @@ class Post
     convert_options: { all: '-background white -flatten +matte' },
     dependent: :destroy
 
-  validates_presence_of :user
+  validates_presence_of :author
 
   after_create  :update_place_posts_count
   after_create  :create_post_reward

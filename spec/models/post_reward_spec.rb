@@ -7,14 +7,14 @@ describe PostReward do
 
   context "when creating a PostReward" do
     subject(:reward)         { create(:post_reward) }
-    its(:giver)     { should eq reward.post.user }
-    its(:receiver)  { should eq reward.post.user }
+    its(:giver)     { should eq reward.post.author }
+    its(:receiver)  { should eq reward.post.author }
   end
 
   describe "scoring" do
     let(:user)  { create(:user) }
     let(:place) { create(:place) }
-    let(:post)  { create(:post, place: place, user: user) }
+    let(:post)  { create(:post, place: place, author: user) }
     context "when post is first post of place" do
       it "should increase the user score by 50" do
         expect{ post }.to change{ user.score }.by(50)

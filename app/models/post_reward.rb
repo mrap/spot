@@ -14,8 +14,8 @@ class PostReward < Reward
   private
 
     def set_giver_and_receiver_to_post_author
-      self.giver    = self.post.user
-      self.receiver = self.post.user
+      self.giver    = self.post.author
+      self.receiver = self.post.author
     end
 
     def set_default_score

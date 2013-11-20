@@ -8,7 +8,7 @@ class HelpfulPostReward < Reward
   private
 
     def set_giver_and_receiver
-      self.receiver = self.post.user
+      self.receiver = self.post.author
     end
 
     def add_score_bonus

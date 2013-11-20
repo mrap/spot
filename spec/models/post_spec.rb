@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Post do
 
-  it { should belong_to :user }
+  it { should belong_to :author }
   it { should belong_to :place }
   it { should have_one(:post_reward).with_dependent(:destroy) }
   it { should have_many(:helpful_post_rewards).with_dependent(:destroy) }

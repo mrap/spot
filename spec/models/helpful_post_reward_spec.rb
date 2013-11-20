@@ -7,7 +7,7 @@ describe HelpfulPostReward do
 
   context "when created" do
     let(:user)          { create(:user) }
-    let(:helpful_post)  { create(:post, user: user) }
+    let(:helpful_post)  { create(:post, author: user) }
     before { helpful_post }
     subject(:reward)  { create(:helpful_post_reward, post: helpful_post) }
     it "increases the post's author's score by 2" do

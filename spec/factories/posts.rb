@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :post do
-    user { create(:user) }
-    place { create(:place) }
+    author  { create(:user) }
+    place   { create(:place) }
 
     trait :with_photo do
       photo   File.new(Rails.root + 'spec/factories/paperclip/demo_photo.jpg')
