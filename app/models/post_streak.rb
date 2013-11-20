@@ -15,8 +15,8 @@ class PostStreak
   end
 
   def self.streakable_place?(place)
-    return false if place.posts_count < POST_STREAK_MINIMUM_POSTS_COUNT ||
-                    place.post_streaks.where(expired: false).exists?
+    return true unless  place.posts_count < POST_STREAK_MINIMUM_POSTS_COUNT ||
+                        place.post_streaks.where(expired: false).exists?
   end
 
   private
