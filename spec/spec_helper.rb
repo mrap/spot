@@ -18,42 +18,31 @@ RSpec.configure do |config|
 
   # :slow tag to exclude slow tests
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+   # mongoid-rspec matchers
 
-  # VCR
-  # config.around(:each, :vcr) do |example|
-  #   name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
-  #   VCR.use_cassette(name) { example.call }
-  # end
+  config.include Mongoid::Matchers, type: :model
 
+  # FactoryGirl
   config.include FactoryGirl::Syntax::Methods
 
-   # Database Cleaner
   require 'database_cleaner'
   config.before(:suite) do
+    Mongoid::Indexing.create_indexes
     DatabaseCleaner[:mongoid].strategy = :truncation
   end
   config.after(:suite) do
     # removes /public/test/
+    Mongoid::Indexing.remove_indexes
     FileUtils.rm_rf(Dir["#{Rails.root}/public/system/test"])
   end
   config.before(:each) do
     DatabaseCleaner.start
+    GC.disable
   end
   config.after(:each) do
     DatabaseCleaner.clean
+    GC.enable
   end
-
-  # Mongoid Indexes
-  config.before :suite do
-    Mongoid::Indexing.create_indexes
-  end
-
-  config.after :suite do
-    Mongoid::Indexing.remove_indexes
-  end
-
-  # mongoid-rspec matchers
-  config.include Mongoid::Matchers, type: :model
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
