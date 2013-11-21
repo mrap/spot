@@ -1,8 +1,8 @@
 class PostStreak
   include Mongoid::Document
   include Mongoid::Timestamps
-  MINIMUM_POSTS_COUNT = AppConstants.post_streak[:minimum_post_count]
-  EXPIRATION_INTERVAL = AppConstants.post_streak[:expiration_interval]
+  MINIMUM_POSTS_COUNT = AppConstants::POST_STREAK[:minimum_post_count]
+  EXPIRATION_INTERVAL = AppConstants::POST_STREAK[:expiration_interval]
 
   belongs_to :place
   has_many :posts
