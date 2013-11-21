@@ -28,9 +28,9 @@ describe Post do
 
   subject(:post) { create(:post) }
 
-  it "should have an attachment :photo", :slow do
-    post = create(:post_with_photo)
-    post.photo.url.should_not be_nil
+  describe ":photo", :slow do
+    subject(:post) { create(:post_with_photo) }
+    its(:photo)    { url.should_not be_nil }
   end
 
   it "should create a post_reward" do
