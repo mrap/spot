@@ -1,2 +1,8 @@
-POST_STREAK_MINIMUM_POSTS_COUNT = 3
-POST_STREAK_EXPIRATION_INTERVAL = 600
+module AppConstants
+  def self.post_streak
+    {
+      minimum_post_count: 3,
+      expiration_interval: 600
+    }
+  end
+end

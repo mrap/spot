@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :post_streak do
     ignore do
-      posts_count POST_STREAK_MINIMUM_POSTS_COUNT
+      posts_count PostStreak::MINIMUM_POSTS_COUNT
     end
      posts  { FactoryGirl.create_list(:post, posts_count) }
   end
