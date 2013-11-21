@@ -68,11 +68,21 @@ describe Place do
     let(:post) { create(:post, place: place) }
     context "when adding a post" do
       it "should fire :post_changed_callback" do
-        place.should_receive(:post_changed_callback)
+        place.should_receive(:post_changed_callback).once
         post
       end
       it "should increment :posts_count" do
         expect{post}.to change{ place.posts_count }.by(1)
+      end
+      it "should call :check_for_new_post_streak" do
+        place.should_receive(:check_for_new_post_streak).once
+        post
+      end
+      context "when post makes place streakable" do
+        let(:place) { create(:almost_streakable_place) }
+        it "should create a new PostStreak" do
+          expect{post}.to change{ PostStreak.count }.by(1)
+        end
       end
     end
     context "when removing or deleting a post" do

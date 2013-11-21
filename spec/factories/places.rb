@@ -36,5 +36,11 @@ FactoryGirl.define do
         end
       end
     end
+
+    factory :almost_streakable_place do
+      after(:create) do |place|
+        create_list(:post, PostStreak::MINIMUM_POSTS_COUNT - 1, place: place)
+      end
+    end
   end
 end
