@@ -20,6 +20,8 @@ describe Place do
   it { should validate_presence_of :name }
   it { should validate_presence_of :coordinates }
 
+  # Instance Specs
+
   subject(:place) { build(:place) }
 
   describe "coordinates helper methods" do
@@ -61,4 +63,23 @@ describe Place do
     end
   end
 
+  describe "posts" do
+    let(:place) { create(:place) }
+    let(:post) { create(:post, place: place) }
+    context "when adding a post" do
+      it "should fire :post_changed_callback" do
+        place.should_receive(:post_changed_callback)
+        post
+      end
+      it "should increment :posts_count" do
+        expect{post}.to change{ place.posts_count }.by(1)
+      end
+    end
+    context "when removing or deleting a post" do
+      before { post }
+      it "should decrement :posts_count" do
+        expect{ post.destroy }.to change{ place.posts_count }
+      end
+    end
+  end
 end

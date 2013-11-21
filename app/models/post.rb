@@ -21,9 +21,8 @@ class Post
 
   validates_presence_of :author
 
-  after_create  :update_place_posts_count
-  after_create  :create_post_reward
-  after_destroy :update_place_posts_count
+  after_create  :update_place, :create_post_reward
+  after_destroy :update_place
 
   scope :recent, ->{ order_by(created_at: :desc) }
 
@@ -41,8 +40,8 @@ class Post
 
   private
 
-    def update_place_posts_count
-      self.place.posts_count = self.place.posts.count
+    def update_place
+      self.place.post_changed_callback
     end
 
     def create_post_reward

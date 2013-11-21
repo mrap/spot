@@ -24,6 +24,7 @@ class Place
 
   scope :most_posts, ->{ order_by(posts_count: :desc) }
   search_in :name
+  after_update :update_for_new_posts
 
   def self.nearby_coordinates(coordinates, options = {})
     if options[:radius]
@@ -38,6 +39,11 @@ class Place
     from     = Vincenty.new(self.latitude, self.longitude)
     to       = Vincenty.new(coordinates.latitude, coordinates.longitude)
     return from.distanceAndAngle(to).distance
+  end
+
+  # Callback fired after_create of new post
+  def post_changed_callback
+    self.posts_count = self.posts.count
   end
 
   def longitude

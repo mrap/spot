@@ -24,25 +24,21 @@ describe Post do
     end
   end
 
+  # Instance Specs
+
+  subject(:post) { create(:post) }
+
   it "should have an attachment :photo", :slow do
     post = create(:post_with_photo)
     post.photo.url.should_not be_nil
   end
 
-  context "when adding a post a place" do
-    let(:place) { create(:place) }
-    it "should update place.posts_count" do
-      expect{ @post = create(:post, place: place) }.to change{ place.posts_count }.by(1)
-      expect{ @post.destroy }.to change{ place.posts_count }
-    end
-    it "should create a post_reward" do
-      expect{ @post = create(:post, place: place) }.to change{ PostReward.count }.by(1)
-    end
+  it "should create a post_reward" do
+    expect{ post }.to change{ PostReward.count }.by(1)
   end
 
   describe ".add_helped_user(user)" do
     let(:user)        { create(:user) }
-    let(:post)        { create(:post) }
     let(:add_user)    { post.add_helped_user(user) }
     it "should add user to helped_users" do
       expect{ add_user }.to change{ post.helped_users.count }.by(1)
