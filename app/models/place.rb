@@ -24,7 +24,6 @@ class Place
 
   scope :most_posts, ->{ order_by(posts_count: :desc) }
   search_in :name
-  after_update :update_for_new_posts
 
   def self.nearby_coordinates(coordinates, options = {})
     if options[:radius]
