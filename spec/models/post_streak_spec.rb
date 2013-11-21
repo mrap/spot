@@ -9,11 +9,6 @@ describe PostStreak do
   it { should have_field(:expired).of_type(Boolean).with_default_value_of(false) }
   it { should have_field(:expiration_time).of_type(ActiveSupport::TimeWithZone) }
 
-  it "should not allow post_streaks that do not have the minimum amount of posts" do
-    expect{ create(:post_streak, posts_count: PostStreak::MINIMUM_POSTS_COUNT - 1) }.to raise_error
-    expect{ create(:post_streak) }.to change{ PostStreak.count }.by(1)
-  end
-
   describe "PostStreak.place_streakable()?" do
     let(:streakable?)   { PostStreak.streakable_place?(place) }
     let(:place) { create(:place) }
@@ -41,7 +36,17 @@ describe PostStreak do
   # Instance Specs
 
   subject(:post_streak) { create(:post_streak) }
+
   it "should have correct expiration_time" do
     post_streak.expiration_time.round.should eq PostStreak.new_expiration_time.round
+  end
+
+  it "should not allow post_streaks that do not have the minimum amount of posts" do
+    expect{ create(:post_streak, posts_count: PostStreak::MINIMUM_POSTS_COUNT - 1) }.to raise_error
+  end
+
+  it "can be created by only assigning :place with enough posts" do
+    place = create(:place_with_posts, posts_count: PostStreak::MINIMUM_POSTS_COUNT)
+    PostStreak.create!(place: place).should_not raise_error
   end
 end
