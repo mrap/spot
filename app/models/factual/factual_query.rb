@@ -2,6 +2,7 @@ require 'factual'
 
 class FactualQuery
   include Mongoid::Document
+  DEFAULT_SEARCH_RADIUS = AppConstants::QUERY[:default_search_radius]
 
   after_initialize :set_initial_query
 
@@ -33,7 +34,7 @@ class FactualQuery
     end
 
     def add_nearby_to_query(options = {})
-      radius = options[:radius] || ENV['DEFAULT_SEARCH_RADIUS']
+      radius = options[:radius] || DEFAULT_SEARCH_RADIUS
       coordinates = options[:coordinates]
       @query = @query.geo("$circle" => {"$center" => [coordinates.latitude, coordinates.longitude], "$meters" => radius }) if coordinates && radius
     end

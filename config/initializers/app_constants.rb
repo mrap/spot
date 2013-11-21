@@ -1,4 +1,7 @@
 module AppConstants
+  QUERY = {
+    default_search_radius: 5000 # in meters
+  }
   REWARD = {
     base_score: 10
   }

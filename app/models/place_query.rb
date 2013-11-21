@@ -1,13 +1,14 @@
 class PlaceQuery
   include Mongoid::Document
   DEFAULT_PLACES_QUERY_LIMIT = 10
+  DEFAULT_SEARCH_RADIUS = AppConstants::QUERY[:default_search_radius]
 
   field :results, type: Array,  default: nil
 
   def search_nearby_coordinates(coordinates, options = {})
     return unless valid_coordinates?(coordinates)
 
-    radius = options[:radius] || ENV['DEFAULT_SEARCH_RADIUS']
+    radius = options[:radius] || DEFAULT_SEARCH_RADIUS
     factual_query = FactualQuery.new
 
     if options[:search_terms]
