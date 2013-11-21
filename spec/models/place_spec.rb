@@ -78,7 +78,7 @@ describe Place do
     context "when removing or deleting a post" do
       before { post }
       it "should decrement :posts_count" do
-        expect{ post.destroy }.to change{ place.posts_count }
+        expect{ post.destroy }.to change{ place.posts_count }.by(-1)
       end
     end
   end
