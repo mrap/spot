@@ -24,8 +24,8 @@ gem 'mongoid_geospatial'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
-gem 'zeus-parallel_tests'
 gem 'webmock'
+gem 'zeus'
 
 group :test, :development do
   gem 'rspec-rails'

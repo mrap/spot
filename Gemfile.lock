@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: b91705b0ded88ed82aedbf0acf17f0a3cf1af471
+  revision: 8187a8073dfc6b804c66b3dc9f95b610b2232ce8
   specs:
     mongoid (4.0.0)
       activemodel (~> 4.0.0)
@@ -80,7 +80,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    guard (2.2.3)
+    guard (2.2.4)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -119,7 +119,7 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
-    mongoid_geospatial (3.0.0)
+    mongoid_geospatial (3.1.0)
       activemodel (>= 3.2)
       activesupport (>= 3.2)
       mongoid (>= 3.0.0)
@@ -145,9 +145,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    parallel (0.9.0)
-    parallel_tests (0.16.3)
-      parallel
     polyglot (0.3.3)
     pry (0.9.12.3)
       coderay (~> 1.0)
@@ -199,7 +196,7 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    slop (3.4.6)
+    slop (3.4.7)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -218,7 +215,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.0)
+    turbolinks (1.3.1)
       coffee-rails
     tzinfo (0.3.38)
     uglifier (2.3.1)
@@ -227,14 +224,11 @@ GEM
     uuidtools (2.1.4)
     vcr (2.7.0)
     vincenty (1.0.4)
-    webmock (1.15.2)
+    webmock (1.16.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
     zeus (0.13.3)
       method_source (>= 0.6.7)
-    zeus-parallel_tests (0.2.4)
-      parallel_tests (>= 0.11.3)
-      zeus (~> 0.13.3)
 
 PLATFORMS
   ruby
@@ -267,4 +261,4 @@ DEPENDENCIES
   vcr
   vincenty
   webmock
-  zeus-parallel_tests
+  zeus
