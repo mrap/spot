@@ -31,24 +31,4 @@ describe Post do
     its(:photo)    { url.should_not be_nil }
   end
 
-  describe ".add_helped_user(user)" do
-    let(:user)        { create(:user) }
-    let(:add_user)    { post.add_helped_user(user) }
-    it "should add user to helped_users" do
-      expect{ add_user }.to change{ post.helped_users.count }.by(1)
-    end
-    it "should not allow duplicates" do
-      add_user
-      expect{ add_user }.not_to change{ post.helped_users.count }
-    end
-  
-    context "then .remove_helped_user" do
-      before { add_user }
-      let(:remove_user) { post.remove_helped_user(user) }
-
-      it "should remove user to helped_users" do
-        expect{ remove_user }.to change{ post.helped_users.count }.by(-1)
-      end
-    end
-  end
 end
