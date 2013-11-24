@@ -27,20 +27,5 @@ FactoryGirl.define do
         create_list(:post, evaluator.posts_count, place: place)
       end
     end
-
-    factory :place_with_post_streak do
-      after(:create) do |place|
-        create(:post_streak, place: place)
-        place.post_streaks.first.posts.each do |post|
-          post.place = place
-        end
-      end
-    end
-
-    factory :almost_streakable_place do
-      after(:create) do |place|
-        create_list(:post, PostStreak::MINIMUM_POSTS_COUNT - 1, place: place)
-      end
-    end
   end
 end

@@ -7,7 +7,6 @@ class Place
   METERS_PER_ARCDEG = 111_000
 
   has_many :posts
-  has_many :post_streaks
 
   field :posts_count,       type: Integer,    default: 0
   field :name,              type: String
@@ -44,7 +43,6 @@ class Place
   def post_changed_callback
     prev_posts_count = self.posts_count
     self.posts_count = self.posts.count
-    check_for_new_post_streak if self.posts_count > prev_posts_count
   end
 
   def longitude
@@ -56,10 +54,6 @@ class Place
   end
 
   private
-
-    def check_for_new_post_streak
-      PostStreak.create!(place: self) if PostStreak.streakable_place?(self)
-    end
 
     def self.meters_to_arcdeg(meters)
       meters.fdiv(METERS_PER_ARCDEG)

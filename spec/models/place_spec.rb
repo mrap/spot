@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Place do
   # Relations
   it { should have_many :posts }
-  it { should have_many :post_streaks }
 
   # Fields
   it { should have_fields :name,
@@ -73,16 +72,6 @@ describe Place do
       end
       it "should increment :posts_count" do
         expect{post}.to change{ place.posts_count }.by(1)
-      end
-      it "should call :check_for_new_post_streak" do
-        place.should_receive(:check_for_new_post_streak).once
-        post
-      end
-      context "when post makes place streakable" do
-        let(:place) { create(:almost_streakable_place) }
-        it "should create a new PostStreak" do
-          expect{post}.to change{ PostStreak.count }.by(1)
-        end
       end
     end
     context "when removing or deleting a post" do
