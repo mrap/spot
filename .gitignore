@@ -20,3 +20,6 @@
 
 # Ignore cassettes.  These should be created locally anyway
 /spec/cassettes
+
+# Ignore .swp files for those using vim :)
+*.swp
