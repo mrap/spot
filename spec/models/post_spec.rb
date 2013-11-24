@@ -5,8 +5,6 @@ describe Post do
   it { should belong_to :author }
   it { should belong_to :place }
   it { should belong_to :post_streak }
-  it { should have_one(:post_reward).with_dependent(:destroy) }
-  it { should have_many(:helpful_post_rewards).with_dependent(:destroy) }
   it { should have_and_belong_to_many(:helped_users).of_type(User).as_inverse_of(:helpful_posts) }
   it { should have_field :created_at }
   it { should have_field :description }
@@ -33,10 +31,6 @@ describe Post do
     its(:photo)    { url.should_not be_nil }
   end
 
-  it "should create a post_reward" do
-    expect{ post }.to change{ PostReward.count }.by(1)
-  end
-
   describe ".add_helped_user(user)" do
     let(:user)        { create(:user) }
     let(:add_user)    { post.add_helped_user(user) }
@@ -47,23 +41,13 @@ describe Post do
       add_user
       expect{ add_user }.not_to change{ post.helped_users.count }
     end
-    it "should create a helpful_post_reward" do
-      expect{ add_user }.to change{ HelpfulPostReward.count }.by(1)
-    end
-    it "should not allow duplicate helpful_post_reward" do
-      add_user
-      expect{ add_user }.not_to change{ HelpfulPostReward.count }
-    end
-
+  
     context "then .remove_helped_user" do
       before { add_user }
       let(:remove_user) { post.remove_helped_user(user) }
 
       it "should remove user to helped_users" do
         expect{ remove_user }.to change{ post.helped_users.count }.by(-1)
-      end
-      it "should destroy a helpful_post_reward" do
-        expect{ remove_user }.to change{ HelpfulPostReward.count }.by(-1)
       end
     end
   end
