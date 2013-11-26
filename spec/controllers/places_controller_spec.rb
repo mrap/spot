@@ -14,7 +14,7 @@ describe PlacesController do
       end
     end
     context "when not :latitude and :longitude not provided ", :vcr do
-      it "is successful" do
+      it "is unsuccessful as a bad request" do
         get :nearby
         response.status.should eq 400
       end
