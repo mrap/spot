@@ -1,3 +1,4 @@
+# Place specialized to ingest Factual API place refs 
 class FactualPlace < Place
   include Mongoid::Document
 
