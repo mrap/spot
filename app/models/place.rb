@@ -53,7 +53,6 @@ class Place
 
   # Callback fired after_create of new post
   def post_changed_callback
-    prev_posts_count = self.posts_count
     self.posts_count = self.posts.count
   end
 
