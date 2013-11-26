@@ -25,6 +25,7 @@ class Post
 
   private
 
+    # Calls back to place after post created or destroyed.
     def update_place
       self.place.post_changed_callback
     end
