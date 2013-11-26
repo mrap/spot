@@ -18,12 +18,21 @@ class Place
   field :country,           type: String
   field :postcode,          type: String
   geo_field :coordinates
-
   validates_presence_of :name, :coordinates
 
-  scope :most_posts, ->{ order_by(posts_count: :desc) }
+  # Queries via full text search
+  #   Place.full_text_search("some search text")
+  # @return [Mongoid::Critera]
   search_in :name
 
+  # Orders a query by Places with most posts -> least posts
+  # @return [Mongoid::Critera] 
+  scope :most_posts, ->{ order_by(posts_count: :desc) }
+
+  # Queries for places located nearby given coordinates within an optional radius.
+  # @param  coordinates [Coordinates] center of the query.
+  # @option radius distance from center in meters.
+  # @return [Mongoid::Critera]
   def self.nearby_coordinates(coordinates, options = {})
     if options[:radius]
       radius = Place.meters_to_arcdeg(options[:radius].to_f)
@@ -33,6 +42,9 @@ class Place
     end
   end
 
+  # Returns the distance from a place's coordinates to other coordinates.
+  # @params coordinates [Coordinates] to compare distance to.
+  # @return distance [Float] in meters.
   def distance_to_coordinates(coordinates)
     from     = Vincenty.new(self.latitude, self.longitude)
     to       = Vincenty.new(coordinates.latitude, coordinates.longitude)
@@ -45,16 +57,21 @@ class Place
     self.posts_count = self.posts.count
   end
 
+  # Returns place's longitude
   def longitude
     self.coordinates.longitude
   end
 
+  # Returns place's latitude
   def latitude
     self.coordinates.latitude
   end
 
   private
 
+    # Converts meters to arc degrees
+    # @param meters
+    # @return arc degrees
     def self.meters_to_arcdeg(meters)
       meters.fdiv(METERS_PER_ARCDEG)
     end
