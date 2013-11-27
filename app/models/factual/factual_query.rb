@@ -13,7 +13,7 @@ require 'factual'
 
 class FactualQuery
   include Mongoid::Document
-  DEFAULT_SEARCH_RADIUS = AppConstants::QUERY[:default_search_radius]
+  DEFAULT_SEARCH_RADIUS = AppSettings::QUERY[:default_search_radius]
 
   after_initialize :set_initial_query
 

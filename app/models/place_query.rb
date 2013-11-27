@@ -1,7 +1,7 @@
 class PlaceQuery
   include Mongoid::Document
   DEFAULT_PLACES_QUERY_LIMIT = 10
-  DEFAULT_SEARCH_RADIUS = AppConstants::QUERY[:default_search_radius]
+  DEFAULT_SEARCH_RADIUS = AppSettings::QUERY[:default_search_radius]
 
   field :results, type: Array,  default: nil
 
