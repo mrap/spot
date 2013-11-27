@@ -3,10 +3,10 @@ class PlacesController < ApplicationController
   before_action :require_coordinates!, only: [:nearby]
 
   # Returns a list of places nearby coordinates. Places ordered by distance.
-  #
-  # URL Params:
-  # Requires => :longitude, :latitude
-  # Options  => :search_terms, :radius(in meters)
+  # @param longitude of the coordinates
+  # @param latitude of the coordinates
+  # @option search_terms [String] words separated by spaces to search for places with matching names
+  # @option radius distance in meters
   def nearby
     require_coordinates!
     place_query = PlaceQuery.new
