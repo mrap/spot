@@ -81,4 +81,18 @@ describe Place do
       end
     end
   end
+
+  describe "current users" do
+    let(:place) { create(:place) }
+    let(:user)  { build(:user) }
+    it "can add a user to current users" do
+      place.add_current_user(user)
+      place.current_users.should include user
+    end
+    it "can remove a user from current users" do
+      place.add_current_user(user)
+      place.remove_current_user(user)
+      place.current_users.should_not include user
+    end
+  end
 end

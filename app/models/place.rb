@@ -19,6 +19,7 @@ class Place
   field :postcode,          type: String
   geo_field :coordinates
   validates_presence_of :name, :coordinates
+  field :current_users,     type: Array,      default: []
 
   # Queries via full text search
   #   Place.full_text_search("some search text")
@@ -64,6 +65,14 @@ class Place
   # Returns place's latitude
   def latitude
     self.coordinates.latitude
+  end
+
+  def add_current_user(user)
+    self.current_users << user
+  end
+
+  def remove_current_user(user)
+    self.current_users.delete(user)
   end
 
   private
