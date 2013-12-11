@@ -18,7 +18,7 @@ class Post
 
   validates_presence_of :author
 
-  after_create  { self.place.post_added }
+  after_create  { self.place.post_added(self) }
   after_destroy { self.place.post_removed }
 
   scope :recent, ->{ order_by(created_at: :desc) }

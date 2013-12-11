@@ -69,6 +69,10 @@ describe Place do
       it "should increment :posts_count" do
         expect{post}.to change{ place.posts_count }.by(1)
       end
+      it "should add post's author to current users" do
+        post
+        place.current_users.should include post.author
+      end
     end
     context "when removing or deleting a post" do
       before { post }

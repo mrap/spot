@@ -70,8 +70,9 @@ class Place
     self.current_users.delete(user)
   end
 
-  def post_added
+  def post_added(post)
     refresh_posts_count
+    add_current_user(post.author)
   end
 
   def post_removed

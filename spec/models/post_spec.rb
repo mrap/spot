@@ -21,8 +21,7 @@ describe Post do
     end
   end
 
-  describe "post callbacks to place" do
-    #when creating a post
+  describe "callbacks to place" do
     let(:place) { create(:place) }
     let(:post) { create(:post,  place: place) }
     context "when post created" do
