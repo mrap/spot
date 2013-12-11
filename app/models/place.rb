@@ -52,11 +52,6 @@ class Place
     return from.distanceAndAngle(to).distance
   end
 
-  # Callback fired after_create of new post
-  def post_changed_callback
-    self.posts_count = self.posts.count
-  end
-
   # Returns place's longitude
   def longitude
     self.coordinates.longitude
@@ -75,6 +70,14 @@ class Place
     self.current_users.delete(user)
   end
 
+  def post_added
+    refresh_posts_count
+  end
+
+  def post_removed
+    refresh_posts_count
+  end
+
   private
 
     # Converts meters to arc degrees
@@ -82,6 +85,10 @@ class Place
     # @return arc degrees
     def self.meters_to_arcdeg(meters)
       meters.fdiv(METERS_PER_ARCDEG)
+    end
+
+    def refresh_posts_count
+      self.posts_count = posts.count
     end
 
 end

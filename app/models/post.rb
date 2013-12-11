@@ -18,16 +18,11 @@ class Post
 
   validates_presence_of :author
 
-  after_create  :update_place
-  after_destroy :update_place
+  after_create  { self.place.post_added }
+  after_destroy { self.place.post_removed }
 
   scope :recent, ->{ order_by(created_at: :desc) }
 
   private
-
-    # Calls back to place after post created or destroyed.
-    def update_place
-      self.place.post_changed_callback
-    end
 
 end

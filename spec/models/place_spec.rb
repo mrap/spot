@@ -66,10 +66,6 @@ describe Place do
     let(:place) { create(:place) }
     let(:post) { create(:post, place: place) }
     context "when adding a post" do
-      it "should fire :post_changed_callback" do
-        place.should_receive(:post_changed_callback).once
-        post
-      end
       it "should increment :posts_count" do
         expect{post}.to change{ place.posts_count }.by(1)
       end

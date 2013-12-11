@@ -21,6 +21,26 @@ describe Post do
     end
   end
 
+  describe "post callbacks to place" do
+    #when creating a post
+    let(:place) { create(:place) }
+    let(:post) { create(:post,  place: place) }
+    context "when post created" do
+      it "should call post_added" do
+        place.should_receive(:post_added).once
+        post
+      end
+    end 
+    context "when post destroyed" do
+      before { post }
+      it "should call post_removed" do
+        place.should_receive(:post_removed).once
+        post.destroy
+      end
+    end
+
+  end
+
   # Instance Specs
 
   subject(:post) { create(:post) }
