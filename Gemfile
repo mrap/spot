@@ -14,6 +14,7 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'mongoid_indexing'
 gem 'mongoid_search'
+gem 'devise'
 
 # Location Gems
 gem 'factual-api'

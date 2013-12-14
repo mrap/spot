@@ -43,6 +43,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    bcrypt-ruby (3.1.2)
     bson (2.0.0.rc3)
     bson_ext (1.5.1)
     builder (3.1.4)
@@ -63,6 +64,12 @@ GEM
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
     database_cleaner (1.2.0)
+    devise (3.2.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -140,6 +147,7 @@ GEM
     oauth (0.4.7)
     optionable (0.1.1)
     origin (1.1.0)
+    orm_adapter (0.5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -224,6 +232,8 @@ GEM
     uuidtools (2.1.4)
     vcr (2.7.0)
     vincenty (1.0.4)
+    warden (1.2.3)
+      rack (>= 1.0)
     webmock (1.16.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -238,6 +248,7 @@ DEPENDENCIES
   bson_ext
   coffee-rails (~> 4.0.0)
   database_cleaner
+  devise
   factory_girl_rails
   factual-api
   figaro
