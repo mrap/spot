@@ -3,7 +3,7 @@ Scout::Application.routes.draw do
   devise_for :users
   resources :places, defaults: { format: 'json' } do
     collection do
-      get 'nearby'
+      get :search
     end
   end
 
