@@ -6,6 +6,11 @@ class ApiKey
 
   before_create :refresh_token
 
+  def self.find_user_with_token(token)
+    api_key = ApiKey.where(token: token).first
+    api_key.user if api_key
+  end
+
   def refresh_token
     self.token = ApiKey.unique_token
   end
