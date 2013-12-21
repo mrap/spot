@@ -25,6 +25,9 @@ RSpec.configure do |config|
   # FactoryGirl
   config.include FactoryGirl::Syntax::Methods
 
+  # JSON Parser
+  config.include Requests::JsonHelpers, type: :request
+
   require 'database_cleaner'
   config.before(:suite) do
     Mongoid::Indexing.create_indexes
