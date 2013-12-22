@@ -14,6 +14,7 @@ describe "existing user requesting a fresh access token" do
     end
     it "should return the new token" do
       json['token'].should_not be_nil
+      json['expiration'].should_not be_nil
     end
   end
 end

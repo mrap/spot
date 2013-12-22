@@ -3,8 +3,9 @@ class TokensController < ApplicationController
   before_action :authenticate_with_credentials!
 
   def create
-    ApiKey.create(user: @user)
-    render json: { token: @user.api_key.token }
+    api_key = ApiKey.create(user: @user)
+    render json: { token: api_key.token,
+                   expiration: api_key.expiration_date }
   end
 
   protected

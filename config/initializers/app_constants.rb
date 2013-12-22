@@ -28,4 +28,8 @@ module AppSettings
     default_search_radius: 5000 # in meters
   }
 
+  API_KEY = {
+    expiration_interval: 172800 # 2 days (in seconds)
+  }
+
 end
