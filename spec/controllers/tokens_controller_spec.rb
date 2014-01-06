@@ -8,6 +8,7 @@ describe TokensController do
   end
 
   describe "POST #new" do
+
     context "with valid user credentials" do
       before do
         request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@email,@password)
@@ -17,20 +18,23 @@ describe TokensController do
         response.should be_success
       end
     end
+
     context "without any credentials" do
       it "should be a bad request" do
         post :create
-        response.status.should eq 400
+        response.status.should eq 401
       end
     end
+
     context "with invalid user credentials" do
       before do
         request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@email,"bad password")
       end
-      it "should be a bad request" do
+      it "should be an unauthorized request" do
         post :create
-        response.status.should eq 400
+        response.status.should eq 401
       end
     end
+
   end
 end

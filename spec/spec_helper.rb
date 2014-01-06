@@ -28,6 +28,9 @@ RSpec.configure do |config|
   # JSON Parser
   config.include Requests::JsonHelpers, type: :request
 
+  # Authenticate with a user token
+  config.include AuthenticationHelpers::TokenAuthentication
+
   require 'database_cleaner'
   config.before(:suite) do
     Mongoid::Indexing.create_indexes
