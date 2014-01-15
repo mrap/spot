@@ -8,7 +8,6 @@ class PlacesController < ApplicationController
   # @option search_terms [String] words separated by spaces to search for places with matching names
   # @option radius distance in meters
   def search
-    require_coordinates!
     place_query = PlaceQuery.new
     place_query.search_nearby_coordinates(@coordinates, radius: params[:radius], search_terms: params[:search_terms])
     @places = place_query.results
