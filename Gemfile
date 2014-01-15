@@ -25,7 +25,6 @@ gem 'mongoid_geospatial'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
-gem 'webmock'
 gem 'zeus'
 
 group :test, :development do
@@ -43,6 +42,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
+  gem 'webmock'
 end
 
 group :doc do
