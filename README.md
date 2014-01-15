@@ -1,20 +1,64 @@
-Scout App
+Scout API
 =========
 
-## TODOs
- 
-1. Add Feature: User can submit bounty request to users currently at the place
+API Documentation
+=================
 
-### User Cases for **Finding Places**
+## User Authentication Token
 
-  1. As a User, I want to find the **place I'm currently at** so that I may create a post for this location.
+### Requesting for a new authentication token
 
-  **Problem**:  I need to easily and quickly find the place.
+Every API client application must submit the user's expirable authenication token
+for every request.  Since, a user does **not** have a token when initially created,
+the client must first request the server for a **new token** before interacting.
 
-  **Solution**: Locate the user and display places closeby sorted by distance.
+    POST /tokens
 
-  **Problem**:  My location may not be accurate enough.
+The user's email and password must be encoded in the HTTP Authorization Header as Basic.  
+Example for user with email: `mike@mrap.me` and password: `password`.
 
-  **Solution**: Sort the nearest results by most posts first.  The user will more likely choose a popular location than not.
+    Authorization: Basic bWlrZUBtcmFwLm1lOnBhc3N3b3Jk
 
-  2. As a User, I want to find the **place I wish to check** so that I may view the place's page.
+## Places
+
+### Searching for places
+
+Get a list of places nearby given coordinates.
+
+    GET /places/search
+
+#### Parameters
+
+<table border="1">
+  <tr>
+    <th>Parameter Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    <th>Required?</th>
+  </tr>
+  <tr>
+    <td>latitude</td>
+    <td>Float</td>
+    <td>Latitude of coordinates.</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>longitude</td>
+    <td>Float</td>
+    <td>Longitude of coordinates.</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>radius</td>
+    <td>Integer</td>
+    <td>Sets a max distance around coordinates in meters.</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>search_terms</td>
+    <td>String</td>
+    <td>Words separated by spaces. Provides full-text-search of potential places' names.  </td>
+    <td>No</td>
+  </tr>
+</table>
+
