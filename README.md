@@ -4,13 +4,58 @@ Scout API
 API Documentation
 =================
 
-## User Authentication Token
+## User
+
+### Create a User
+
+    POST /users
+
+#### Parameters
+
+<table border="1">
+  <tr>
+    <th>Parameter Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    <th>Required?</th>
+  </tr>
+  <tr>
+    <td>user[email]</td>
+    <td>String</td>
+    <td>User's email address.</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>user[username]</td>
+    <td>String</td>
+    <td>User's unique username.</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>user[password]</td>
+    <td>String</td>
+    <td>User's password.</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
+#### Successful Response
+
+Upon successful user creation, the server returns the new user's authentication `token`
+and the token's `expiration` date:
+
+    {
+      "token":"e159c39a1a9223e24099fdbe1f5dd2bac446347f3f3515e82e468053f26fbfbf4b8bd64edd4c1a4fb63018dfddfe429077ff2c153dfc9f3e4337aad3ee50868a",
+      "expiration":"2014-01-18T09:36:18+00:00"
+    }
+
+----------------------------------------------
 
 ### Requesting for a new authentication token
 
 Every API client application must submit the user's expirable authenication token
-for every request.  Since, a user does **not** have a token when initially created,
-the client must first request the server for a **new token** before interacting.
+for every request.  
+If the token is expired, the user may request for a new one like so:
 
     POST /tokens
 

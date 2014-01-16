@@ -2,7 +2,7 @@ Scout::Application.routes.draw do
 
   namespace :api, constraints: { format: 'json' } do
     namespace :v1 do
-      devise_for :users
+      devise_for :users, skip: [:sessions]
       resources :places, defaults: { format: 'json' } do
         collection do
           get :search
