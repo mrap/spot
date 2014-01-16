@@ -10,11 +10,11 @@ describe "Creating a new user" do
     let(:new_user) { User.where(username: "mrap").first }
 
     it "should return the new user's token" do
-      json['token'].should eq new_user.api_key.token
+      json['data']['token'].should eq new_user.api_key.token
     end
 
     it "should return the token expiration date" do
-      json['expiration'].should eq new_user.api_key.expiration_date.to_s
+      json['data']['expiration'].should eq new_user.api_key.expiration_date.to_s
     end
   end
 
@@ -24,7 +24,7 @@ describe "Creating a new user" do
     end
 
     it "should return an error" do
-      json['errors'].should_not be_nil
+      json['meta']['errors'].should_not be_nil
     end
   end
 

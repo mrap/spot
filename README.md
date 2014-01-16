@@ -1,11 +1,32 @@
 Spot API Documentation
 =======================
 
+Getting Started
+===============
+
+## Request format
+
 Every request must prepend `/api/v1`. For example:
 
     POST www.spot.com/api/v1/users
 
 The `/api/v1` prefix is not included in the urls below for brevity.
+
+## Response format
+
+Response JSON provides two macro hashes: `"meta"` and `"data"`.
+
+    {
+      "meta": {
+          // Response messages such as errors and internal codes.
+        }
+      "data": {
+          // Response data such as locations, users, etc.
+        }
+    }
+
+Assume that all JSON responses below are within the `"data"` macro hash
+unless otherwise specified.
 
 ## User
 

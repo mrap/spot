@@ -13,8 +13,8 @@ describe "existing user requesting a fresh access token" do
     end
     it "should return the new token" do
       @user = User.where(email: email).first
-      json['token'].should eq @user.api_key.token
-      json['expiration'].should eq @user.api_key.expiration_date.to_s
+      json['data']['token'].should eq @user.api_key.token
+      json['data']['expiration'].should eq @user.api_key.expiration_date.to_s
     end
   end
 end

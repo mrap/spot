@@ -4,7 +4,7 @@ class Api::V1::PlacesController < Api::V1::ApiController
   before_action :require_coordinates!, only: [:search]
 
   def show
-    render json: @place
+    render json: { data: @place }
   end
 
   # Returns a list of places nearby coordinates. Places ordered by distance.
@@ -16,7 +16,7 @@ class Api::V1::PlacesController < Api::V1::ApiController
     place_query = PlaceQuery.new
     place_query.search_nearby_coordinates(@coordinates, radius: params[:radius], search_terms: params[:search_terms])
     @places = place_query.results
-    render json: @places
+    render json: { data: @places }
   end
 
   private
