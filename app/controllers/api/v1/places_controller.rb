@@ -1,4 +1,4 @@
-class Api::V1::PlacesController < Api::V1::ApplicationController
+class Api::V1::PlacesController < ApplicationController
 
   before_action :get_place, only: [:show]
   before_action :require_coordinates!, only: [:search]

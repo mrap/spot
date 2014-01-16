@@ -1,4 +1,4 @@
-class Api::V1::ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 # Stub ApplicationController
 # get :index to test
-class TestController < Api::V1::ApplicationController
+class TestController < ApplicationController
   def index
     render nothing: true
   end
