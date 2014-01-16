@@ -7,6 +7,25 @@ describe PlacesController do
 
   before { set_token_auth_with_user }
 
+  describe "GET #show" do
+    let(:place) { create(:place) }
+
+    context "with a valid place_id" do
+      it "is successful" do
+        get :show, id: place.id
+        response.should be_successful
+        assigns(:place).should eq place
+      end
+    end
+
+    context "with an invalid place_id" do
+      it "should return a not found status code (404)" do
+        get :show, id: "bad-request"
+        response.status.should eq 404
+      end
+    end
+  end
+
   describe "GET #search" do
     # Required url params: [:longitude, :latitude]
     # Optional url params: [:radius, :search_terms]
@@ -23,4 +42,5 @@ describe PlacesController do
       end
     end
   end
+
 end

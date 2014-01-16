@@ -1,6 +1,11 @@
 class PlacesController < ApplicationController
 
+  before_action :get_place, only: [:show]
   before_action :require_coordinates!, only: [:search]
+
+  def show
+    render json: @place
+  end
 
   # Returns a list of places nearby coordinates. Places ordered by distance.
   # @param longitude of the coordinates
@@ -15,6 +20,13 @@ class PlacesController < ApplicationController
   end
 
   private
+
+    def get_place
+      @place = Place.where(id: params[:id]).first
+      unless @place
+        render nothing: true, status: :not_found and return
+      end
+    end
 
     # Requires both `longitude` and `latitude` url params.
     # Else, renders nothing with `bad request` status code.

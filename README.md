@@ -21,6 +21,10 @@ Example for user with email: `mike@mrap.me` and password: `password`.
 
 ## Places
 
+### Get a Place
+
+    GET /places/:place_id
+
 ### Searching for places
 
 Get a list of places nearby given coordinates.
