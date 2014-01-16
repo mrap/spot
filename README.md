@@ -1,8 +1,11 @@
-Scout API
-=========
+Spot API Documentation
+=======================
 
-API Documentation
-=================
+Every request must prepend `/api/v1`. For example:
+
+    POST www.spot.com/api/v1/users
+
+The `/api/v1` prefix is not included in the urls below for brevity.
 
 ## User
 
