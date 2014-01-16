@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PlacesController do
+describe Api::V1::PlacesController do
   let(:coordinates) { build(:chipotle_factual_place).coordinates }
   let(:latitude)    { coordinates.latitude }
   let(:longitude)    { coordinates.longitude }

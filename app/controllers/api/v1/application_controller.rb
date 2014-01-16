@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class Api::V1::ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -56,4 +56,5 @@ class ApplicationController < ActionController::Base
     def decoded_token
       token_and_options(request).first if token_and_options(request)
     end
+
 end

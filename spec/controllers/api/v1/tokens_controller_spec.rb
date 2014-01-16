@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TokensController do
+describe Api::V1::TokensController do
   before do
     @email = "user@example.com"
     @password = "password"

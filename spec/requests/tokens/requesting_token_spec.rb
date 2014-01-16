@@ -9,7 +9,7 @@ describe "existing user requesting a fresh access token" do
   context "when requesting with valid credentials" do
     before do
       user
-      post '/tokens', nil, 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials(email,password)
+      post 'api/v1/tokens', nil, 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials(email,password)
     end
     it "should return the new token" do
       @user = User.where(email: email).first

@@ -1,4 +1,4 @@
-class TokensController < ApplicationController
+class Api::V1::TokensController < Api::V1::ApplicationController
 
   def create
     api_key = ApiKey.create!(user: current_user)
