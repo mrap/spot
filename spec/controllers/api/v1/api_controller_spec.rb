@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-# Stub ApplicationController
+# Stub ApiController
 # get :index to test
-class TestController < ApplicationController
+class TestApiController < Api::V1::ApiController
   def index
     render nothing: true
   end
 
   test_routes = Proc.new do
-      get '/index' => 'test#index'
+      get '/index' => 'test_api#index'
   end
   Rails.application.routes.eval_block(test_routes)
 end
 
-describe TestController do
+describe TestApiController do
   describe "authenticating users" do
 
     context "with valid token" do
