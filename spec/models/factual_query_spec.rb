@@ -8,7 +8,7 @@ describe FactualQuery do
   describe ".nearby_coordinates", :vcr => { record: :new_episodes } do
     let(:colma_coordinates) { build(:chipotle_factual_place).coordinates }
     subject(:results) do
-      factual_query.nearby_coordinates(colma_coordinates, radius: 300)
+      factual_query.nearby_coordinates(colma_coordinates, radius: 10)
       factual_query.results
     end
 
