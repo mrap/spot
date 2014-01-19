@@ -14,8 +14,7 @@ class Api::V1::PlacesController < Api::V1::ApiController
   # @option radius distance in meters
   def search
     place_query = PlaceQuery.new
-    place_query.search_nearby_coordinates(@coordinates, radius: params[:radius], search_terms: params[:search_terms])
-    @places = place_query.results
+    @places = place_query.search_nearby_coordinates(@coordinates, radius: params[:radius], search_terms: params[:search_terms])
     render json: { data: @places }
   end
 
@@ -32,7 +31,7 @@ class Api::V1::PlacesController < Api::V1::ApiController
     # Else, renders nothing with `bad request` status code.
     def require_coordinates!
       if params[:longitude] && params[:latitude]
-        @coordinates = Coordinates.new(params[:longitude], params[:latitude])
+        @coordinates = Coordinates.new(params[:longitude].to_f, params[:latitude].to_f)
       end
       unless @coordinates
         render nothing: true, status: :bad_request and return
