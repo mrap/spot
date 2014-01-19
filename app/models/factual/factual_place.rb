@@ -1,17 +1,16 @@
 # Place specialized to ingest Factual API place refs 
 class FactualPlace < Place
-  include Mongoid::Document
 
   field :factual_id,      type: String
   field :category_labels, type: Array
   field :hours,           type: String
   field :tel,             type: String
 
-  validates_presence_of :factual_id
+  validates :factual_id, presence: true, uniqueness: true
 
   def self.create_from_api_ref(ref)
     valid_attributes = filter_only_valid_attributes(ref)
-    FactualPlace.create!(valid_attributes)
+    FactualPlace.create(valid_attributes)
   end
 
   def self.build_from_api_ref(ref)

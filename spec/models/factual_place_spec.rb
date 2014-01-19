@@ -11,6 +11,7 @@ describe FactualPlace do
 
   # Validations
   it { should validate_presence_of :factual_id }
+  it { should validate_uniqueness_of :factual_id }
 
   describe "creating factual api references", :vcr do
     let(:api_ref) do
