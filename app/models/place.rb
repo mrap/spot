@@ -31,6 +31,14 @@ class Place
   # @return [Mongoid::Critera] 
   scope :most_posts, ->{ order_by(posts_count: :desc) }
 
+  def serializable_hash(options={})
+    hash = super(except: [:coordinates, :_id])
+    hash[:longitude] = self.coordinates.longitude
+    hash[:latitude] = self.coordinates.latitude
+    hash[:id] = self.id.to_s
+    return hash
+  end
+
   # Queries for places located nearby given coordinates within an optional radius.
   # @param  coordinates [Coordinates] center of the query.
   # @option radius distance from center in meters.
