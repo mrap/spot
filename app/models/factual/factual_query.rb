@@ -51,7 +51,7 @@ class FactualQuery
 
     def set_initial_query
       factual = Factual.new(ENV['FACTUAL_API_KEY'], ENV['FACTUAL_API_SECRET'])
-      @query = factual.table("places-edge") 
+      @query = factual.table("places")
       # other factual tables: 
       # http://developer.factual.com/data-docs/
     end
