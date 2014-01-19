@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     factory :starbucks_factual_place do
       name          "Starbucks"
-      factual_id    "cb236b05-1a09-421e-9493-9d022f476757"
+      factual_id    "9d3c6c8b-9c98-45c9-b0a0-08cfbb33b106"
       coordinates   {{ latitude: 37.671391, longitude: -122.463909 }}
     end
   end
