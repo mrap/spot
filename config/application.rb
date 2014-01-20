@@ -15,6 +15,8 @@ module Scout
   class Application < Rails::Application
 
     # Autoload models in subfolders
+    # Requires the application to be restarted if there are any changes.
+    # TODO: Find a better way to do this.
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
 
     # Settings in config/environments/* take precedence over those specified here.
