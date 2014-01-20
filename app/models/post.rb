@@ -27,6 +27,11 @@ class Post
     hash = super(options)
     hash[:author_id] = author.id.to_s
     hash[:place_id] = place.id.to_s
+    hash.delete('photo_content_type')
+    hash.delete('photo_file_name')
+    hash.delete('photo_file_size')
+    hash.delete('photo_updated_at')
+    hash[:photo_url] = self.photo.url
     return hash
   end
 

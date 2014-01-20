@@ -41,7 +41,7 @@ describe "Requesting for a place JSON reference" do
   end
 
   context "when a place has posts" do
-    let(:place) { create(:place_with_posts, posts_count: 2) }
+    let(:place) { create(:place_with_post) }
     before do
       get api_v1_place_path(place.id), nil, set_token_auth_with_user
     end
@@ -58,6 +58,24 @@ describe "Requesting for a place JSON reference" do
 
     it "should have a basic place_id" do
       posts.first['place_id'].should eq place.id.to_s
+    end
+  end
+
+  context "when a post has a photo", slow: true do
+    let(:place) { create(:place) }
+    before do
+      @post_with_photo = create(:post_with_photo, place: place)
+      get api_v1_place_path(place.id), nil, set_token_auth_with_user
+    end
+    subject(:post) { json['data']['posts'].last }
+
+    it { should_not have_key "photo_content_type" }
+    it { should_not have_key "photo_file_name" }
+    it { should_not have_key "photo_file_size" }
+    it { should_not have_key "photo_updated_at" }
+
+    it "should have a photo_url" do
+      post['photo_url'].should eq @post_with_photo.photo.url
     end
   end
 
