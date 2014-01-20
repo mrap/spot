@@ -50,4 +50,15 @@ describe "Requesting for a place JSON reference" do
     end
   end
 
+  context "when a place is a factual place" do
+    let(:place) { create(:factual_place) }
+    before do
+      get api_v1_place_path(place.id), nil, set_token_auth_with_user
+    end
+
+    it "should not return a factual_id" do
+      json['data'].should_not have_key 'factual_id'
+    end
+  end
+
 end

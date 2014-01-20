@@ -18,6 +18,12 @@ class FactualPlace < Place
     FactualPlace.new(valid_attributes)
   end
 
+  def serializable_hash(options = {})
+    hash = super(options)
+    hash.delete("factual_id")
+    return hash
+  end
+
   private
 
     def self.filter_only_valid_attributes(attributes = {})
