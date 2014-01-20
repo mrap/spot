@@ -35,7 +35,7 @@ class Place
     hash = super(except: [:coordinates])
     hash[:longitude] = self.coordinates.longitude
     hash[:latitude] = self.coordinates.latitude
-    hash[:posts] = self.posts
+    hash[:posts] = self.posts.as_json
     return hash
   end
 

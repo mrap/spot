@@ -27,6 +27,27 @@ describe "Requesting for a place JSON reference" do
     it "should have address info" do
       json['data']['address'].should eq place.address
     end
-
   end
+
+  context "when a place has posts" do
+    let(:place) { create(:place_with_posts, posts_count: 2) }
+    before do
+      get api_v1_place_path(place.id), nil, set_token_auth_with_user
+    end
+
+    subject(:posts) { json['data']['posts'] }
+
+    it "should have posts" do
+      posts.count.should eq place.posts.count
+    end
+
+    it "should have a basic author_id" do
+      posts.first['author_id'].should eq place.posts.first.author.id.to_s
+    end
+
+    it "should have a basic place_id" do
+      posts.first['place_id'].should eq place.id.to_s
+    end
+  end
+
 end

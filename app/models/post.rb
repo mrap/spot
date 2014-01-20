@@ -23,6 +23,11 @@ class Post
 
   scope :recent, ->{ order_by(created_at: :desc) }
 
-  private
+  def serializable_hash(options = {})
+    hash = super(options)
+    hash[:author_id] = author.id.to_s
+    hash[:place_id] = place.id.to_s
+    return hash
+  end
 
 end
