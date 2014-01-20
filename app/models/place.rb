@@ -32,10 +32,10 @@ class Place
   scope :most_posts, ->{ order_by(posts_count: :desc) }
 
   def serializable_hash(options={})
-    hash = super(except: [:coordinates, :_id])
+    hash = super(except: [:coordinates])
     hash[:longitude] = self.coordinates.longitude
     hash[:latitude] = self.coordinates.latitude
-    hash[:id] = self.id.to_s
+    hash[:posts] = self.posts
     return hash
   end
 
