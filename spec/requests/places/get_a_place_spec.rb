@@ -21,7 +21,7 @@ describe "Requesting for a place JSON reference" do
     it "should have latitude and longitude but not `coordinates`" do
       json['data']['longitude'].should eq place.longitude
       json['data']['latitude'].should eq place.latitude
-      json['data'].should_not have_key :coordinates
+      json['data'].should_not have_key 'coordinates'
     end
 
     it "should have address info" do
