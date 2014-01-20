@@ -22,6 +22,7 @@ class FactualPlace < Place
     hash = super(options)
     hash.delete("factual_id")
     hash.delete("category_labels")
+    hash.delete("neighborhood")
     return hash
   end
 

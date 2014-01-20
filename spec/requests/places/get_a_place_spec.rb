@@ -33,6 +33,11 @@ describe "Requesting for a place JSON reference" do
     it "should not have _keywords (from mongoid full text search)" do
       data.should_not have_key "_keywords"
     end
+
+    it "should not have created_at or updated_at" do
+      data.should_not have_key "created_at"
+      data.should_not have_key "updated_at"
+    end
   end
 
   context "when a place has posts" do
@@ -68,6 +73,10 @@ describe "Requesting for a place JSON reference" do
 
     it "should not return category_labels" do
       json['data'].should_not have_key "category_labels"
+    end
+
+    it "should not return neighborhood" do
+      json['data'].should_not have_key "neighborhood"
     end
   end
 
