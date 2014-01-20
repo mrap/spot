@@ -59,6 +59,10 @@ describe "Requesting for a place JSON reference" do
     it "should not return a factual_id" do
       json['data'].should_not have_key 'factual_id'
     end
+
+    it "should not return category_labels" do
+      json['data'].should_not have_key "category_labels"
+    end
   end
 
 end

@@ -21,6 +21,7 @@ class FactualPlace < Place
   def serializable_hash(options = {})
     hash = super(options)
     hash.delete("factual_id")
+    hash.delete("category_labels")
     return hash
   end
 
