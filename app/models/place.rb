@@ -37,6 +37,7 @@ class Place
     hash[:longitude] = self.coordinates.longitude
     hash[:latitude] = self.coordinates.latitude
     hash[:posts] = self.posts.as_json
+    hash.delete('_keywords')
     return hash
   end
 

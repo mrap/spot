@@ -27,6 +27,10 @@ describe "Requesting for a place JSON reference" do
     it "should have address info" do
       json['data']['address'].should eq place.address
     end
+
+    it "should not have _keywords (from mongoid full text search)" do
+      json['data'].should_not have_key "_keywords"
+    end
   end
 
   context "when a place has posts" do
