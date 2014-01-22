@@ -25,8 +25,7 @@ class PlaceQuery
       places = Place.nearby_coordinates(coordinates, radius: radius)
     end
 
-    # Sort results by distance.
-    places.sort { |p| p.distance_to_coordinates(coordinates) }
+    return places
   end
 
   private

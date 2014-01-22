@@ -12,7 +12,7 @@ describe PlaceQuery do
     describe ".search_nearby_coordinates" do
       context "with only :radius option", :vcr do
         subject(:results) do
-          place_query.search_nearby_coordinates(my_coordinates, radius: 1000)
+          place_query.search_nearby_coordinates(my_coordinates, radius: 10000)
         end
         it "should include starbucks" do
           results.should include @starbucks
@@ -29,10 +29,10 @@ describe PlaceQuery do
         context "when 'Chipotle' already in the database" do
           before { @chipotle = create(:chipotle_factual_place) }
           subject(:results) do
-            place_query.search_nearby_coordinates(my_coordinates, search_terms: "chipotle", radius: 1000)
+            place_query.search_nearby_coordinates(my_coordinates, search_terms: "chipotle", radius: 10000)
           end
           it "should have other results from the factual_api" do
-            results.count.should eq 1
+            results.count.should > 1
           end
           it "should return the Chipotle location" do
             results.first.should eq @chipotle
