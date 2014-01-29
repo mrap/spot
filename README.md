@@ -155,7 +155,7 @@ Get a list of places nearby given coordinates.
         "posts": [
         {
           "author_id": "52d7b1ea6d72611dbf000000",
-          "description": null,
+          "description": "Not very busy",
           "helped_user_ids": [],
           "place_id": "52db83826d72612ca1150000",
           "id": "52e8bd816d72619dfe020000",
