@@ -46,22 +46,27 @@ describe "Requesting for a place JSON reference" do
       get api_v1_place_path(place.id), nil, set_token_auth_with_user
     end
 
-    subject(:posts) { json['data']['posts'] }
+    subject(:posts_json) { json['data']['posts'] }
 
     it "should have posts" do
-      posts.count.should eq place.posts.count
+      posts_json.count.should eq place.posts.count
     end
 
-    it "should have a basic author_id" do
-      posts.first['author_id'].should eq place.posts.first.author.id.to_s
-    end
+    describe "post JSON" do
+      let(:post_json) { posts_json.first }
+      let(:post) { place.posts.last }
 
-    it "should have a basic place_id" do
-      posts.first['place_id'].should eq place.id.to_s
-    end
+      it "should have a basic author_id" do
+        post_json['author_id'].should eq post.author.id.to_s
+      end
 
-    it "should have created at date" do
-      posts.first['created_at'].should eq place.posts.first.created_at.iso8601
+      it "should have a basic place_id" do
+        post_json['place_id'].should eq place.id.to_s
+      end
+
+      it "should have created at date" do
+        post_json['created_at'].should eq post.created_at.iso8601
+      end
     end
   end
 
