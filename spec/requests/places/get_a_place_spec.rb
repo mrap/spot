@@ -59,6 +59,10 @@ describe "Requesting for a place JSON reference" do
     it "should have a basic place_id" do
       posts.first['place_id'].should eq place.id.to_s
     end
+
+    it "should have created at date" do
+      posts.first['created_at'].should eq place.posts.first.created_at.iso8601
+    end
   end
 
   context "when a post has a photo", slow: true do

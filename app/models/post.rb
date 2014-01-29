@@ -32,6 +32,7 @@ class Post
     hash.delete('photo_file_size')
     hash.delete('photo_updated_at')
     hash[:photo_url] = self.photo.url
+    hash[:created_at] = self.created_at.iso8601
     return hash
   end
 
