@@ -4,14 +4,14 @@ Paperclip::Attachment.default_options.update({
 
 # Environment Configurations
 
-unless Rails.env.production?
+unless Rails.env.production? || Rails.env.development?
   Paperclip::Attachment.default_options.merge!({
     :url => "/system/:rails_env/:class/:attachment/:hash/:style/:filename",
     :path => ":rails_root/public:url"
   })
 end
 
-if Rails.env.production?
+if Rails.env.production? || Rails.env.development?
   Paperclip::Attachment.default_options.merge!({
     storage: :s3,
     s3_credentials: {
