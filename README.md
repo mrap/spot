@@ -21,7 +21,7 @@ Response JSON provides two macro hashes: `"meta"` and `"data"`.
           // Response messages such as errors and internal codes.
         }
       "data": {
-          // Response data such as locations, users, etc.
+          // Response data such as places, users, etc.
         }
     }
 
@@ -135,3 +135,32 @@ Get a list of places nearby given coordinates.
   </tr>
 </table>
 
+#### Successful Response Example
+
+    {
+      "address": "990 Serramonte Blvd",
+        "address_extended": "Ste D",
+        "country": "us",
+        "current_users": [],
+        "hours": "{\"monday\":[[\"11:00\",\"22:00\"]],\"tuesday\":[[\"11:00\",\"22:00\"]],\"wednesday\":[[\"11:00\",\"22:00\"]],\"thursday\":[[\"11:00\",\"22:00\"]],\"friday\":[[\"11:00\",\"22:00\"]],\"saturday\":[[\"11:00\",\"22:00\"]],\"sunday\":[[\"11:00\",\"22:00\"]]}",
+        "locality": "Colma",
+        "name": "Chipotle Mexican Grill",
+        "postcode": "94014",
+        "posts_count": 0,
+        "region": "CA",
+        "tel": "(415) 840-7007",
+        "id": "52db83826d72612ca1150000",
+        "longitude": -122.464216,
+        "latitude": 37.67178,
+        "posts": [
+        {
+          "author_id": "52d7b1ea6d72611dbf000000",
+          "description": null,
+          "helped_user_ids": [],
+          "place_id": "52db83826d72612ca1150000",
+          "id": "52e8bd816d72619dfe020000",
+          "photo_url": "http://s3-us-west-1.amazonaws.com/spot-app-dev/posts/photos/27ff456b807cea30c4fdc714996f3cf88b972207/full.jpg?1390984577",
+          "created_at": "2014-01-29T08:36:17Z"
+        }
+      ]
+    }
