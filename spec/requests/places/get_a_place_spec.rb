@@ -67,6 +67,10 @@ describe "Requesting for a place JSON reference" do
       it "should have created at date" do
         post_json['created_at'].should eq post.created_at.iso8601
       end
+
+      it "should have the author's name" do
+        post_json['author_username'].should eq post.author.username
+      end
     end
   end
 

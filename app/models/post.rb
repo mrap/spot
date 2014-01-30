@@ -26,6 +26,7 @@ class Post
   def serializable_hash(options = {})
     hash = super(options)
     hash[:author_id] = author.id.to_s
+    hash[:author_username] = author.username
     hash[:place_id] = place.id.to_s
     hash.delete('photo_content_type')
     hash.delete('photo_file_name')
