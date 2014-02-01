@@ -165,3 +165,46 @@ Get a list of places nearby given coordinates.
         }
       ]
     }
+
+### Creating a new post
+
+Posts are nested within a Place. 
+Put simply, a post cannot exist without a place.
+
+    POST /place/:place_id/posts
+
+#### Parameters
+
+<table border="1">
+  <tr>
+    <th>Parameter Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    <th>Required?</th>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>String</td>
+    <td>An optional user curated description.</td>
+    <td>No</td>
+  </tr>
+</table>
+
+#### Successful Response Example
+
+If the post was created successfully, 
+the server will return a redirect to the post's place.
+
+The place's url is provided in the `"X-XHR-Redirected-To"` header for convenience.
+
+    @header={"X-Frame-Options"=>"SAMEORIGIN",
+      "X-XSS-Protection"=>"1; mode=block", 
+      "X-Content-Type-Options"=>"nosniff",
+      "X-UA-Compatible"=>"chrome=1",
+      "X-XHR-Redirected-To"=>"http://www.example.com/api/v1/places/52ec3a8d6d72611cf3000000",
+      "Content-Type"=>"text/html; charset=utf-8",
+      "Cache-Control"=>"no-cache",
+      "Set-Cookie"=>"request_method=GET; path=/\n_scout_session=MHZKUGFwZlZMZWUxTUs3UysycmV5UHRQek5NVFREeUtnbDMxOTV5VjFVVDhzd3BLdFdCclJiRWYvckhrUmd6aGtTMDJ6Z3ZNMm1wQy9GQlZtZU1WL0E9PS0tVWlSQ2xubWZ6MDVLanVPVXZSdEdGZz09--65e33e2bf780f68a28eb41d1ccafa9f96e636063; path=/; HttpOnly",
+      "X-Request-Id"=>"d2871412-1a5f-414a-867f-b259f0c7d225",
+      "X-Runtime"=>"0.014612", "Content-Length"=>"1"}
+
