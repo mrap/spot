@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :comment do
     post   { create(:post) }
     author { create(:user) }
+    text   "My comment."
   end
 end
