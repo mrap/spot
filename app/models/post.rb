@@ -6,6 +6,7 @@ class Post
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :place
   has_and_belongs_to_many :helped_users, class_name: "User", inverse_of: :helpful_posts
+  has_many :comments
 
   field :description
   has_mongoid_attached_file :photo,
