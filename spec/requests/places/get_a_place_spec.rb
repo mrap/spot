@@ -92,6 +92,31 @@ describe "Requesting for a place JSON reference" do
     end
   end
 
+  context "when a post has comments" do
+    let(:place) { create(:place) }
+    before do
+      @post = create(:post, place: place)
+      create(:comment, post: @post, text: "my text here")
+      get api_v1_place_path(place.id), nil, set_token_auth_with_user
+    end
+
+    subject(:post) { json['data']['posts'].last }
+    let(:first_comment) { post["comments"].first }
+
+    it { should have_key "comments" }
+    it "should have text" do
+      first_comment["text"].should eq "my text here"
+    end
+    
+    it "should have basic post_id" do
+      first_comment["post_id"].should eq Comment.last.post.id.to_s
+    end
+
+    it "should have basic author_id" do
+      first_comment["author_id"].should eq Comment.last.author.id.to_s
+    end
+  end
+
   context "when a place is a factual place" do
     let(:place) { create(:factual_place) }
     before do

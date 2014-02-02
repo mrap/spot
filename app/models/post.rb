@@ -35,6 +35,7 @@ class Post
     hash.delete('photo_updated_at')
     hash[:photo_url] = self.photo.url
     hash[:created_at] = self.created_at.iso8601
+    hash[:comments] = self.comments
     return hash
   end
 
