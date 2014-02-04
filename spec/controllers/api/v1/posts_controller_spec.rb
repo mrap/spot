@@ -12,7 +12,7 @@ describe Api::V1::PostsController do
     subject { response }
 
     context "with valid post attributes" do
-      it { should redirect_to api_v1_place_path(place) }
+      its(:status) { should eq 201 }
 
       it "should set the post's author to the current user" do
         place.posts.last.author.should eq user

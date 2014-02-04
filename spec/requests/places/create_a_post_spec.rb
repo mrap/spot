@@ -10,8 +10,12 @@ describe "creating a new post" do
 
   let(:data) { json['data'] }
 
-  it "redirects to the post's place" do
-    redirect_path = URI::parse(response.headers['Location']).path
-    redirect_path.should match api_v1_places_path(place)
+  it "returns the post's place" do
+    data['id'].should eq place.id.to_s
   end
+
+  it "should have the newly created place" do
+    data['posts'].last['id'].should eq place.posts.last.id.to_s
+  end
+
 end

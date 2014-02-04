@@ -7,7 +7,8 @@ class Api::V1::PostsController < Api::V1::ApiController
     @post = @place.posts.new(params[:post])
     @post.author = current_user
     if @post.save
-      redirect_to api_v1_place_path(@place)
+      render json: { data: @place },
+        status: :created
     else
       render json: { meta: { errors: @post.errors } },
         status: :bad_request
