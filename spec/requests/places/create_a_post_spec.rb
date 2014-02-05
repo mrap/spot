@@ -3,9 +3,10 @@ require 'spec_helper'
 describe "creating a new post" do
   let(:place) { create(:place) }
   let(:user) { create(:user) }
+  let(:post_attributes) { attributes_for(:post) }
 
   before do
-    post api_v1_place_posts_path(place), nil, set_token_auth_with_user(user)
+    post api_v1_place_posts_path(place), { post: post_attributes }, set_token_auth_with_user(user)
   end
 
   let(:data) { json['data'] }

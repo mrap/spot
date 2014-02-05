@@ -4,7 +4,7 @@ class Api::V1::PostsController < Api::V1::ApiController
   before_action :get_place
 
   def create
-    @post = @place.posts.new(params[:post])
+    @post = @place.posts.new(post_params)
     @post.author = current_user
     if @post.save
       render json: { data: @place },
@@ -22,5 +22,9 @@ class Api::V1::PostsController < Api::V1::ApiController
       unless @place
         render nothing: true, status: :not_found and return
       end
+    end
+
+    def post_params
+      params.require(:post).permit(:description, :photo)
     end
 end
