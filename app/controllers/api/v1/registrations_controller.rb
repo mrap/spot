@@ -17,7 +17,7 @@ class Api::V1::RegistrationsController < ApplicationController
         }
       }, status: 201
     else
-      raise_bad_request_error
+      bad_request(@registered_user.errors)
     end
   end
 
@@ -26,8 +26,8 @@ class Api::V1::RegistrationsController < ApplicationController
       params.require(:registered_user).permit(:email, :username, :password)
     end
 
-    def bad_request
-      errors = @registered_user.errors if @registered_user
+    def bad_request(errors = nil)
+      errors ||= error
       render json: { 
         meta: {
           errors: errors
