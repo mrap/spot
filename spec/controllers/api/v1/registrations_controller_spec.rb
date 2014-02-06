@@ -3,9 +3,10 @@ require 'spec_helper'
 describe Api::V1::RegistrationsController do
   describe "POST #create" do
 
-    context "with valid parameters for a new user" do
+    context "with valid parameters for a new registered user" do
+      let(:registered_user_attributes) { attributes_for(:registered_user) }
       it "should return a created status code (201)" do
-        post :create, user: { email: "mike@mrap.me", username: "mrap", password: "password" }
+        post :create, registered_user: registered_user_attributes
         response.status.should eq 201
       end
     end

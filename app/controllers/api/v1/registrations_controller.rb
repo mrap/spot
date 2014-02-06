@@ -3,26 +3,36 @@
 class Api::V1::RegistrationsController < ApplicationController
 
   respond_to :json
+  rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def create
-    user = User.new(params[:user])
-    if user.save
-      # Create a new api key for the new user.
-      ApiKey.create!(user: user)
+    @registered_user = RegisteredUser.new(registered_user_params)
+    if @registered_user.save
+      # Create a new api key for the new registered_user.
+      ApiKey.create!(user: @registered_user)
       render json: { 
         data: { 
-          token: user.api_key.token,
-          expiration: user.api_key.expiration_date
+          token: @registered_user.api_key.token,
+          expiration: @registered_user.api_key.expiration_date
         }
       }, status: 201
-      return
     else
+      raise_bad_request_error
+    end
+  end
+
+  private
+    def registered_user_params
+      params.require(:registered_user).permit(:email, :username, :password)
+    end
+
+    def bad_request
+      errors = @registered_user.errors if @registered_user
       render json: { 
         meta: {
-          errors: user.errors 
+          errors: errors
         }
       }, status: 422 
     end
-  end
 
 end
