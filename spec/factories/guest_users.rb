@@ -2,6 +2,5 @@
 
 FactoryGirl.define do
   factory :guest_user do
-    unique_identifier { create(:unique_identifier) }
   end
 end
