@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :post do
-    author  { create(:user) }
+    author  { create(:registered_user) }
     place   { create(:place) }
 
     trait :with_photo do
