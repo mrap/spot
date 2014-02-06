@@ -21,27 +21,32 @@ class Api::V1::ApiController < ApplicationController
 
   def current_user
     @current_user ||= authenticated_user_with_token ||
-      authenticated_user_with_login_credentials
+      registered_user_with_login_credentials
   end
 
   private
 
+    # Forces the controller to set a current_user
     def authenticate_current_user
       raise_not_authorized_error unless current_user
     end
 
+    # Returns a user if a valid token is present.
+    # Else returns nil.
     def authenticated_user_with_token
       ApiKey.find_user_with_token(decoded_token)
     end
 
-    def authenticated_user_with_login_credentials
+    # Returns a registered_user with given login credentials.
+    # Else returns nil.
+    def registered_user_with_login_credentials
       login_credentials = decoded_credentials
       unless login_credentials.blank?
         email = login_credentials[0]
         password = login_credentials[1]
-        user = User.where(email: email).first
-        if user && user.valid_password?(password)
-          return user
+        registered_user = RegisteredUser.where(email: email).first
+        if registered_user && registered_user.valid_password?(password)
+          return registered_user
         else
           return nil
         end

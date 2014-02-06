@@ -4,7 +4,7 @@ describe Api::V1::TokensController do
   before do
     @email = "user@example.com"
     @password = "password"
-    @user = FactoryGirl.create(:user, email: @email, password: @password)
+    @registered_user = FactoryGirl.create(:registered_user, email: @email, password: @password)
   end
 
   describe "POST #new" do
