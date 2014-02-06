@@ -30,9 +30,23 @@ unless otherwise specified.
 
 ## User
 
-### Create a User
+### Create a GuestUser
 
-    POST /users
+    POST /guest_users
+
+#### Successful Response
+
+Upon successful user creation, the server returns the guest user's authentication `token`
+and the `server_uid`.
+
+    {
+      "token":"e159c39a1a9223e24099fdbe1f5dd2bac446347f3f3515e82e468053f26fbfbf4b8bd64edd4c1a4fb63018dfddfe429077ff2c153dfc9f3e4337aad3ee50868a",
+      "server_uid":"bd47e6e78eda330a80dfba05d8976901"
+    }
+----------------------------
+### Create a Registered User
+
+    POST /registered_users
 
 #### Parameters
 
