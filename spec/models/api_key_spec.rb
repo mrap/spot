@@ -4,22 +4,25 @@ describe ApiKey do
   it { should belong_to :user }
   it { should have_field :token }
   it { should have_field(:expiration_date).of_type(DateTime) }
+  it { should validate_presence_of :token }
+  it { should validate_uniqueness_of :token }
+  it { should validate_presence_of :expiration_date }
 
   subject(:api_key) { create(:api_key) }
 
   its(:token) { should_not be_nil }
 
   describe "finding a user with token" do
-    subject(:found_user) { ApiKey.find_user_with_token(api_key.token) }
-    context "when a user is found" do
-      before do
-        @user = create(:user)
-        @user.api_key = api_key
+    context "when token belongs to a user" do
+      it "should return the user" do
+        user = create(:user)
+        ApiKey.find_user_with_token(user.api_key.token).should eq user
       end
-      it { should eq @user }
     end
     context "when no user has that token" do
-      it { should be nil }
+      it "should return nil" do
+        ApiKey.find_user_with_token("a-bad-token").should eq nil
+      end
     end
   end
 

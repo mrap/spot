@@ -6,10 +6,7 @@ class Api::V1::RegistrationsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def create
-    @registered_user = RegisteredUser.new(registered_user_params)
-    if @registered_user.save
-      # Create a new api key for the new registered_user.
-      ApiKey.create!(user: @registered_user)
+    if @registered_user = RegisteredUser.create!(registered_user_params)
       render json: { 
         data: { 
           token: @registered_user.api_key.token,

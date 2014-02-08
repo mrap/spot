@@ -8,13 +8,13 @@ describe "registered user requesting a fresh access token" do
 
   context "when requesting with valid credentials" do
     before do
-      registered_user
+      @original_token = registered_user.api_key.token
+      @original_expiration_date = registered_user.api_key.expiration_date
       post 'api/v1/tokens', nil, 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials(email,password)
     end
     it "should return the new token" do
-      @user = User.where(email: email).first
-      json['data']['token'].should eq @user.api_key.token
-      json['data']['expiration'].should eq @user.api_key.expiration_date.to_s
+      json['data']['token'].should_not eq @original_token
+      json['data']['expiration'].should eq @original_expiration_date.to_s
     end
   end
 end

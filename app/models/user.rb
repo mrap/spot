@@ -8,4 +8,12 @@ class User
   has_one :api_key
 
   field :score,    type: Integer, default: 0
+
+  before_create :generate_api_key
+
+  private
+    def generate_api_key
+      ApiKey.create(user: self)
+    end
+
 end
