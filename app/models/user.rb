@@ -11,7 +11,7 @@ class User
 
   before_create :generate_api_key
 
-  private
+  protected
     def generate_api_key
       ApiKey.create(user: self)
     end
