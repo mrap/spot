@@ -10,9 +10,9 @@ class Post
 
   field :description
   has_mongoid_attached_file :photo,
-    default_style: :full,
+    default_style: :original,
     styles: {
-      full: ['640x640>',   :jpg]
+      original: ['640x640>',   :jpg]
     },
     convert_options: { all: '-background white -flatten +matte' },
     dependent: :destroy
