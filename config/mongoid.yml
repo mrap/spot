@@ -1,3 +1,13 @@
+production:
+  sessions:
+    default:
+      username: <%= ENV['MONGO_USERNAME'] %>
+      password: <%= ENV['MONGO_PASSWORD'] %>
+      database: "spot"
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
 development:
   # Configure available database sessions. (required)
   sessions:
@@ -5,7 +15,7 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: scout_development
+      database: spot_development
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
@@ -65,7 +75,7 @@ development:
 test:
   sessions:
     default:
-      database: scout_test
+      database: spot_test
       hosts:
         - localhost:27017
       options:
