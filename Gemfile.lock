@@ -9,6 +9,16 @@ GIT
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
 
+GIT
+  remote: git://github.com/mongoid/moped.git
+  revision: 578ed1ed47967fac4d21adb1d1762b1ecf431495
+  tag: v2.0.0.beta6
+  specs:
+    moped (2.0.0.beta6)
+      bson (~> 2.2)
+      connection_pool (~> 1.2)
+      optionable (~> 0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,7 +55,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
-    bson (2.0.0)
+    bson (2.2.0)
     builder (3.1.4)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -139,10 +149,6 @@ GEM
     mongoid_search (0.3.2)
       fast-stemmer (~> 1.0.0)
       mongoid (>= 3.0.0)
-    moped (2.0.0.beta4)
-      bson (~> 2.0)
-      connection_pool (~> 1.2)
-      optionable (~> 0.2.0)
     multi_json (1.8.4)
     multi_xml (0.5.5)
     nokogiri (1.6.1)
@@ -270,6 +276,7 @@ DEPENDENCIES
   mongoid_geospatial
   mongoid_indexing
   mongoid_search
+  moped!
   rails (= 4.0.2)
   rspec-rails
   sass-rails (~> 4.0.0)

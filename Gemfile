@@ -12,9 +12,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'mongoid', github: 'mongoid/mongoid', tag: 'v4.0.0.beta1'
+gem 'moped', github: 'mongoid/moped', tag: 'v2.0.0.beta6'
 gem 'mongoid_indexing'
 gem 'mongoid_search'
 gem 'devise'
+
 
 # Location Gems
 gem 'factual-api'
