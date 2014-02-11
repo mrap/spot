@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+gem 'unicorn'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -25,12 +26,11 @@ gem 'mongoid_geospatial'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
-gem 'zeus'
-
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'vcr'
+  gem 'zeus'
 end
 
 group :development do
