@@ -27,6 +27,9 @@ gem 'mongoid_geospatial'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
+# Support Gems
+gem 'newrelic_rpm'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
