@@ -10,6 +10,7 @@ Scout::Application.routes.draw do
         end
         resources :posts
       end
+      get '/posts', to: 'posts#index', as: 'latest_posts'
 
       resources :tokens, defaults: { format: 'json' }
     end

@@ -132,6 +132,9 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    mongoid-pagination (0.2.0)
+      activesupport
+      mongoid
     mongoid-paperclip (0.0.8)
       paperclip (>= 2.3.6)
     mongoid-rspec (1.10.0)
@@ -272,6 +275,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mongoid!
+  mongoid-pagination
   mongoid-paperclip
   mongoid-rspec
   mongoid_geospatial

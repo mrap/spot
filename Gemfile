@@ -16,6 +16,7 @@ gem 'moped', github: 'mongoid/moped', tag: 'v2.0.0.beta6'
 gem 'mongoid_indexing'
 gem 'mongoid_search'
 gem 'devise'
+gem 'mongoid-pagination'
 
 
 # Location Gems

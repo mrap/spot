@@ -1,7 +1,7 @@
 # Nested Controller
 # Post belongs to Place.
 class Api::V1::PostsController < Api::V1::ApiController
-  before_action :get_place
+  before_action :get_place, only: [:create]
 
   def create
     @post = @place.posts.new(post_params)
@@ -13,6 +13,11 @@ class Api::V1::PostsController < Api::V1::ApiController
       render json: { meta: { errors: @post.errors } },
         status: :bad_request
     end
+  end
+
+  def index
+    @posts = Post.recent.paginate(page: params[:page], limit: 10)
+    render json: { data: @posts }, status: :success
   end
 
   private

@@ -2,6 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Mongoid::Pagination
 
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :place
