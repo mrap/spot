@@ -11,12 +11,12 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/moped.git
-  revision: 578ed1ed47967fac4d21adb1d1762b1ecf431495
-  tag: v2.0.0.beta6
+  revision: f27a6fe600ecd0c0ed95bcec74ce2f21ab9a83e5
+  tag: v2.0.0.rc1
   specs:
-    moped (2.0.0.beta6)
+    moped (2.0.0.rc1)
       bson (~> 2.2)
-      connection_pool (~> 1.2)
+      connection_pool (~> 2.0)
       optionable (~> 0.2.0)
 
 GEM
@@ -75,7 +75,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
-    connection_pool (1.2.0)
+    connection_pool (2.0.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.2.0)
