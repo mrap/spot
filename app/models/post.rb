@@ -19,7 +19,7 @@ class Post
     dependent: :destroy
   
   # As of Paperclip v4.0.0, content type must be validated
-  validates_attachment_content_type :photo, content_type: /\Aimage/
+  validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png)
 
   validates_presence_of :author
 
