@@ -14,7 +14,7 @@ describe "registered user requesting a fresh access token" do
     end
     it "should return the new token" do
       json['data']['token'].should_not eq @original_token
-      json['data']['expiration'].should eq @original_expiration_date.to_s
+      json['data']['expiration'].to_time.to_i.should eq @original_expiration_date.to_i
     end
   end
 end

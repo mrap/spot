@@ -14,7 +14,7 @@ describe "Creating a new registered user" do
     end
 
     it "should return the token expiration date" do
-      json['data']['expiration'].should eq new_registered_user.api_key.expiration_date.to_s
+      json['data']['expiration'].to_time.to_i.should eq new_registered_user.api_key.expiration_date.to_i
     end
   end
 

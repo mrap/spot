@@ -47,7 +47,9 @@ describe Post do
 
   describe ":photo", :slow do
     subject(:post) { create(:post_with_photo) }
-    its(:photo)    { url.should_not be_nil }
+    it "should have a photo" do
+      post.photo.url.should_not be_nil
+    end
   end
 
 end

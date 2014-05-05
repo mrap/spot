@@ -17,6 +17,9 @@ class Post
     },
     convert_options: { all: '-background white -flatten +matte' },
     dependent: :destroy
+  
+  # As of Paperclip v4.0.0, content type must be validated
+  validates_attachment_content_type :photo, content_type: /\Aimage/
 
   validates_presence_of :author
 
