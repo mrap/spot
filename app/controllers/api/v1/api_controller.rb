@@ -60,6 +60,8 @@ class Api::V1::ApiController < ApplicationController
     end
 
     def decoded_token
-      token_and_options(request).first if token_and_options(request)
+      return nil unless token_and_options(request)
+      token_str = token_and_options(request).first
+      token_str.gsub(/[^0-9a-z]/i, '')
     end
 end
