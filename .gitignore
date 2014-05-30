@@ -25,3 +25,4 @@
 *.swp
 .idea
 .env
+db/dumps/
