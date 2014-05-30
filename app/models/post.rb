@@ -30,9 +30,9 @@ class Post
 
   def serializable_hash(options = {})
     hash = super(options)
-    hash[:author_id] = author.id.to_s
+    hash[:author_id] = author.id.to_s if author
     hash[:author_username] = author.username if author.has_attribute? :username
-    hash[:place_id] = place.id.to_s
+    hash[:place_id] = place.id.to_s if place
     hash.delete('photo_content_type')
     hash.delete('photo_file_name')
     hash.delete('photo_file_size')
