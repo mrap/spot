@@ -21,7 +21,10 @@ class Api::V1::ApiController < ApplicationController
 
   def current_user
     @current_user ||= authenticated_user_with_token ||
-      registered_user_with_login_credentials
+                      # registered_user_with_login_credentials ||
+                      GuestUser.create()
+    # TODO: Remove GuestUser.create() after iOS client update
+    #       This is just a temporary patch for preexisting users
   end
 
   private
@@ -34,7 +37,6 @@ class Api::V1::ApiController < ApplicationController
     # Returns a user if a valid token is present.
     # Else returns nil.
     def authenticated_user_with_token
-      puts "DECODED: #{decoded_token}"
       ApiKey.find_user_with_token(decoded_token)
     end
 
