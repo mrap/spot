@@ -24,6 +24,7 @@ gem 'mongoid-pagination'
 gem 'factual-api'
 gem 'vincenty'
 gem 'mongoid_geospatial'
+gem 'google_places'
 
 # Attachments
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'

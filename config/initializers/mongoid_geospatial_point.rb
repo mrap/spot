@@ -12,4 +12,7 @@ end
 
 # makes life a little easier
 class Coordinates < Mongoid::Geospatial::Point
+  def self.new_with_lat_long(lat, long)
+    self.new(long, lat)
+  end
 end
