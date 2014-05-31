@@ -26,5 +26,12 @@ describe GooglePlace do
       places = places_with_coordinates
       GooglePlace.count.should eq places.count
     end
+
+    context "with :keyword option" do
+      let(:places)    { GooglePlace.places_near_coordinates(chipotle_coordinates, keyword: 'Chipotle') }
+      subject(:first) { places.first }
+
+      its(:name) { should include 'Chipotle' }
+    end
   end
 end
