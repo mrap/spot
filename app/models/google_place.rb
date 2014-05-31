@@ -21,7 +21,7 @@ class GooglePlace < Place
     place             = GooglePlace.new
     place.google_id   = ref.id if ref.id
     place.name        = ref.name if ref.name
-    place.address     = ref.vicinity if ref.vicinity
+    place.address     = ref.vicinity || ref.formatted_address || ref.address_components.join(", ") || nil
     place.coordinates = Coordinates.new_with_lat_long(ref.lat, ref.lng)
 
     return place if place.save
