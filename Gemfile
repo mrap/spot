@@ -25,6 +25,8 @@ gem 'factual-api'
 gem 'vincenty'
 gem 'mongoid_geospatial'
 gem 'google_places'
+gem 'foursquare2'
+gem 'instagram'
 
 # Attachments
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
