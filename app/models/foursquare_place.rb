@@ -3,6 +3,12 @@ class FoursquarePlace < Place
   field :foursquare_id
   validates :foursquare_id, presence: true, uniqueness: true
 
+  def serializable_hash(options = {})
+    hash = super(options)
+    hash[:foursquare_id] = self.foursquare_id || nil
+    return hash
+  end
+
   FOURSQUARE_SEARCH_LIMIT = 50
 
   def self.places_near_coordinates(coordinates, options={} )

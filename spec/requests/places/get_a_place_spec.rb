@@ -38,6 +38,14 @@ describe "Requesting for a place JSON reference" do
       data.should_not have_key "created_at"
       data.should_not have_key "updated_at"
     end
+
+    context "when it's a FoursquarePlace" do
+      let(:place) { create(:foursquare_place_chipotle) }
+
+      it "should have a foursquare id" do
+        data.should have_key 'foursquare_id'
+      end
+    end
   end
 
   context "when a place has posts" do

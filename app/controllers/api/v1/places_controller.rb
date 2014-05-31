@@ -13,7 +13,7 @@ class Api::V1::PlacesController < Api::V1::ApiController
   # @option search_terms [String] words separated by spaces to search for places with matching names
   # @option radius distance in meters
   def search
-    @places = GooglePlace.places_near_coordinates(@coordinates, keyword: params[:search_terms])
+    @places = FoursquarePlace.places_near_coordinates(@coordinates, query: params[:search_terms])
     render json: { data: @places }
   end
 
