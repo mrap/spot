@@ -16,9 +16,9 @@ describe GooglePlace do
     its(:coordinates) { should_not be_nil }
   end
 
-  describe "#places_with_coordinates" do
+  describe "#places_near_coordinates" do
     let(:chipotle_coordinates)        { Coordinates.new_with_lat_long(37.6717, -122.464216) }
-    subject(:places_with_coordinates) { GooglePlace.places_with_coordinates(chipotle_coordinates) }
+    subject(:places_with_coordinates) { GooglePlace.places_near_coordinates(chipotle_coordinates) }
 
     it { should have_at_least(1).items }
 

@@ -3,7 +3,7 @@ class GooglePlace < Place
   field :google_id
   validates :google_id, presence: true, uniqueness: true
 
-  def self.places_with_coordinates(coordinates)
+  def self.places_near_coordinates(coordinates)
     return [] unless coordinates.latitude && coordinates.longitude
     places = GooglePlacesClient.spots(coordinates.latitude, coordinates.longitude, {rankby: 'distance', keyword: '*'} )
     places.collect { |place_ref| GooglePlace.find_or_create_from_api_ref(place_ref) }
@@ -26,5 +26,4 @@ class GooglePlace < Place
     return nil unless ref
     GooglePlace.where(google_id: ref.id).first || GooglePlace.create_from_api_ref(ref)
   end
-
 end
